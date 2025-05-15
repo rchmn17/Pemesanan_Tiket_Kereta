@@ -34,7 +34,7 @@ class User {
     }
 
     public static void buatAkun(String UserName, String password) {
-        String path = "./Users/"+UserName;
+        String path = "./PemesananTiketKereta/Users/"+UserName;
         String path2 = path +"/";
         File pathDir = new File(path);
         File[] pathFile = new File[3];
