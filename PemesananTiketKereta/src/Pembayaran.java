@@ -1,15 +1,15 @@
 public class Pembayaran {
-    private String Jenis;
-    private double Amount;
-    Private Tiket tiket;
+    private String jenis;
+    private double amount;
+    private Tiket tiket;
 
-    public Pembayaran(String Jenis, double Amount) {
-        this.Jenis=Jenis;
-        this.Amount=Amount;
+    public Pembayaran(String jenis, double amount) {
+        this.jenis=jenis;
+        this.amount=amount;
     }
 
     public void setAmount(double Amount) {
-        this.Amount = Amount;
+        this.amount = Amount;
     }
 
     public void setJenis(String jenis) {
