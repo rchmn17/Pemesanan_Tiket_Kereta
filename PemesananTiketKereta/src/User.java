@@ -33,7 +33,7 @@ class User {
         return "";
     }
 
-    public static void buatAkun(String UserName, String password, String Nama) {
+    public static void buatAkun(String UserName, String password) {
         String path = "./Users/"+UserName;
         String path2 = path +"/";
         File pathDir = new File(path);
@@ -80,7 +80,7 @@ class User {
 
         //menulis isi file
         
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(p))) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(pathFile[0]))) {
                 writer.write(password);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
