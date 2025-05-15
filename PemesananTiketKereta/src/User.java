@@ -1,12 +1,13 @@
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 
 class User {
     String name;
     String password;
-    ArrayList <String> history;
+    ArrayList<String> history;
 
     User(String name, String password) {
         this.name = name;
@@ -26,64 +27,79 @@ class User {
     }
 
     public void setHistory() {
-        
+
     }
 
     public String getHistory() {
         return "";
     }
 
-    public static void buatAkun(String UserName, String password) {
-        String path = "./PemesananTiketKereta/Users/"+UserName;
-        String path2 = path +"/";
-        File pathDir = new File(path);
-        File[] pathFile = new File[3];
-        pathFile[0] = new File(path2+"Password.txt");
-        pathFile[1] = new File(path2+"Id.txt");
-        pathFile[2] = new File(path2+"History.txt");
-        
+    public static void buatAkun(String userName, String password) {
+        String basePath = System.getProperty("user.dir");
+        String userPath = basePath + File.separator + "PemesananTiketKereta" + File.separator + "Users" + File.separator + userName;
 
-        // bikin folder
-        if (!pathDir.exists()) {
-            boolean tes = false;
-            try {
-                pathDir.mkdir();
-                tes = true;
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-            if (tes) {
-                System.out.println("folderBerhasilDibuat");
+        File userDir = new File(userPath);
+        File passwordFile = new File(userDir, "Password.txt");
+        File historyFile = new File(userDir, "History.txt");
+
+        if (!userDir.exists()) {
+            if (userDir.mkdirs()) {
+                System.out.println("Folder berhasil dibuat.");
+            } else {
+                System.out.println("Gagal membuat folder.");
+                return;
             }
         } else {
-            System.out.println("folderSudahAda");
+            System.out.println("Folder sudah ada.");
         }
 
+        try (FileWriter writer = new FileWriter(passwordFile)) {
+            writer.write(password);
+            System.out.println("Password berhasil disimpan.");
+        } catch (IOException e) {
+            System.out.println("Error menulis password: " + e.getMessage());
+        }
 
-        // bikin setUp file
-        for (File p : pathFile) {
-            if (!p.exists()) {
-                boolean tes = false;
-                try {
-                    p.createNewFile();
-                    tes = true;
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-                if (tes) {
-                    System.out.println("UserBerhasilDisetup");
-                }
+        try {
+            if (historyFile.createNewFile()) {
+                System.out.println("File history dibuat.");
             } else {
-                System.out.println("Eror");
+                System.out.println("File history sudah ada.");
             }
+        } catch (IOException e) {
+            System.out.println("Error membuat file history: " + e.getMessage());
+        }
+    }
+
+    public static boolean login(String userName, String inputPassword) {
+        String basePath = System.getProperty("user.dir");
+        String userPath = basePath + File.separator + "PemesananTiketKereta" + File.separator + "Users" + File.separator + userName;
+        File userFolder = new File(userPath);
+
+        if (!userFolder.exists() || !userFolder.isDirectory()) {
+            System.out.println("User not found.");
+            return false;
         }
 
-        //menulis isi file
-        
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(pathFile[0]))) {
-                writer.write(password);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+        File passwordFile = new File(userPath + File.separator + "password.txt");
+
+        if (!passwordFile.exists()) {
+            System.out.println("Password file not found.");
+            return false;
+        }
+
+        try {
+            String savedPassword = Files.readString(passwordFile.toPath()).trim();
+            if (savedPassword.equals(inputPassword)) {
+                System.out.println("Login successful!");
+                return true;
+            } else {
+                System.out.println("Incorrect password.");
+                return false;
             }
+        } catch (IOException e) {
+            System.out.println("Error reading password file: " + e.getMessage());
+            return false;
+        }
     }
 }
