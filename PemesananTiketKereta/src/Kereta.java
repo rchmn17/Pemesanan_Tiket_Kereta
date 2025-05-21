@@ -1,10 +1,8 @@
 public class Kereta {
-    // Atribut ============================
     private String Nama;
     private String TipeKereta;
     private int harga;
 
-    // Method =============================
     public Kereta(String Nama, String tipe, int harga) {
         this.Nama = Nama;
         this.TipeKereta = tipe;
@@ -26,11 +24,4 @@ public class Kereta {
     public int getHarga() {
         return this.harga;
     }
-
-    
-
-    
-    
-
-
 }
