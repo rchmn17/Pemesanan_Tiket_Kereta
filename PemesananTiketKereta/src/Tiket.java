@@ -1,14 +1,13 @@
-import java.time.LocalDate;
 
 class Tiket {
     String nomorKursi;
     String kode;
-    LocalDate jadwal;
+    Jadwal jadwal;
 
-    Tiket(String nomorKursi, String kode, int year, int month, int day) {
+    Tiket(String nomorKursi, String kode, Jadwal jadwal) {
         this.nomorKursi = nomorKursi;
         this.kode = kode;
-        this.jadwal = LocalDate.of(year, month, day);
+        this.jadwal = jadwal;
     }
 
     public void setNomorKursi(String nomorKursi) {
@@ -27,11 +26,11 @@ class Tiket {
         return kode;
     }
 
-    public void setJadwal(int year, int month, int day) {
-        this.jadwal = LocalDate.of(year, month, day);
+    public void setJadwal(Jadwal jadwal) {
+        this.jadwal = jadwal;
     }
 
-    public LocalDate getJadwal() {
+    public Jadwal getJadwal() {
         return jadwal;
     }
 }

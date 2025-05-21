@@ -1,22 +1,23 @@
 
-import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Jadwal {
     private Kereta kereta;
-    private LocalDate waktuKeberangkatan;
-    private LocalDate waktuKedatangan;
+    private LocalTime waktuKeberangkatan;
+    private LocalTime waktuKedatangan;
     private Stasiun stasiunAwal;
     private Stasiun stasiunAkhir;
     private double harga;
     private int kursiTersedia;
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
-    public Jadwal(Kereta kereta, LocalDate waktuKeberangkatan, LocalDate waktuKedatangan, Stasiun stasiunAwal, Stasiun stasiunAkhir, double harga, int kursiTersedia) {
-        this.kereta = kereta;
-        this.waktuKeberangkatan = waktuKeberangkatan;
-        this.waktuKedatangan = waktuKedatangan;
-        this.stasiunAwal = stasiunAwal;
-        this.stasiunAkhir = stasiunAkhir;
-        this.harga = harga;
+    public Jadwal(String kereta, String waktuKeberangkatan, String waktuKedatangan, String stasiunAwal, String stasiunAkhir, int kursiTersedia) {
+        setKereta(kereta);
+        this.waktuKeberangkatan = LocalTime.parse(waktuKeberangkatan, formatter);
+        this.waktuKedatangan = LocalTime.parse(waktuKedatangan, formatter);
+        setStasiunAwal(stasiunAwal);
+        setStasiunAkhir(stasiunAkhir);
         this.kursiTersedia = kursiTersedia;
     }
 
@@ -35,4 +36,35 @@ public class Jadwal {
     public void kurangiKursi(){
         setKursiTersedia(getKursiTersedia()-1);        
     }
+
+    public void setKereta (String nama) {
+        for (Kereta elem : Kereta.listKereta) {
+            if (nama.equals(elem.getNama())) {
+                this.kereta = elem;
+            }
+        }
+    }
+
+    public void setStasiunAkhir (String nama) {
+        for (Stasiun elem : Stasiun.listStasiun) {
+            if (nama.equals(elem.getNama())) {
+                this.stasiunAkhir = elem;
+            }
+        }
+    }
+
+    public void setStasiunAwal (String nama) {
+        for (Stasiun elem : Stasiun.listStasiun) {
+            if (nama.equals(elem.getNama())) {
+                this.stasiunAwal = elem;
+            }
+        }
+    
+    }
+    
+    public String toString() {
+        return kereta.getNama()+" "+waktuKeberangkatan+" "+waktuKedatangan+" "+kursiTersedia;
+    }
+
+
 }
