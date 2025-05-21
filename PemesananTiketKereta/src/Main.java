@@ -1,9 +1,12 @@
+
+
 public class Main {
     public static void main(String[] args) {
         // User.buatAkun("anjay", "123");
-        TiketManager.setJadwals();
+        TiketManager tm = new TiketManager();
 
-        for (Jadwal elem : TiketManager.jadwals) {
+
+        for (Jadwal elem : tm.getJadwals()) {
             System.out.println(elem.toString());
         }
 

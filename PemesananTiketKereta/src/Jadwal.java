@@ -1,6 +1,6 @@
-
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class Jadwal {
     private Kereta kereta;
@@ -12,12 +12,12 @@ public class Jadwal {
     private int kursiTersedia;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
-    public Jadwal(String kereta, String waktuKeberangkatan, String waktuKedatangan, String stasiunAwal, String stasiunAkhir, int kursiTersedia) {
-        setKereta(kereta);
+    public Jadwal(String kereta, String waktuKeberangkatan, String waktuKedatangan, String stasiunAwal, String stasiunAkhir, int kursiTersedia, List<Kereta> keretas, List<Stasiun> stasiuns) {
+        setKereta(keretas, kereta);
         this.waktuKeberangkatan = LocalTime.parse(waktuKeberangkatan, formatter);
         this.waktuKedatangan = LocalTime.parse(waktuKedatangan, formatter);
-        setStasiunAwal(stasiunAwal);
-        setStasiunAkhir(stasiunAkhir);
+        setStasiunAwal(stasiuns, stasiunAwal);
+        setStasiunAkhir(stasiuns, stasiunAkhir);
         this.kursiTersedia = kursiTersedia;
     }
 
@@ -37,24 +37,24 @@ public class Jadwal {
         setKursiTersedia(getKursiTersedia()-1);        
     }
 
-    public void setKereta (String nama) {
-        for (Kereta elem : Kereta.listKereta) {
+    public void setKereta (List<Kereta> keretas, String nama) {
+        for (Kereta elem : keretas) {
             if (nama.equals(elem.getNama())) {
                 this.kereta = elem;
             }
         }
     }
 
-    public void setStasiunAkhir (String nama) {
-        for (Stasiun elem : Stasiun.listStasiun) {
+    public void setStasiunAkhir(List<Stasiun> stasiuns ,String nama) {
+        for (Stasiun elem : stasiuns) {
             if (nama.equals(elem.getNama())) {
                 this.stasiunAkhir = elem;
             }
         }
     }
 
-    public void setStasiunAwal (String nama) {
-        for (Stasiun elem : Stasiun.listStasiun) {
+    public void setStasiunAwal(List<Stasiun> stasiuns, String nama) {
+        for (Stasiun elem : stasiuns) {
             if (nama.equals(elem.getNama())) {
                 this.stasiunAwal = elem;
             }
