@@ -1,8 +1,0 @@
-GatotBeling 06:00:00 12:30:00 jatiLuhur suhungMambro 40  
-GatotBeling 08:15:00 14:45:00 jatiLuhur suhungMambro 38  
-GatotBeling 10:00:00 16:20:00 jatiLuhur suhungMambro 36  
-GatotBeling 12:30:00 19:00:00 jatiLuhur suhungMambro 34  
-GatotBeling 14:00:00 20:15:00 jatiLuhur suhungMambro 32  
-GatotBeling 16:20:00 22:45:00 jatiLuhur suhungMambro 30  
-GatotBeling 18:00:00 00:20:00 jatiLuhur suhungMambro 28  
-GatotBeling 20:30:00 03:00:00 jatiLuhur suhungMambro 26 
