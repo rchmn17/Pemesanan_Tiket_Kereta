@@ -36,11 +36,12 @@ public class Jadwal {
     public void kurangiKursi(){
         setKursiTersedia(getKursiTersedia()-1);        
     }
-
+    
     public void setKereta (List<Kereta> keretas, String nama) {
         for (Kereta elem : keretas) {
             if (nama.equals(elem.getNama())) {
                 this.kereta = elem;
+                setHarga(elem.getHarga());
             }
         }
     }
@@ -59,7 +60,10 @@ public class Jadwal {
                 this.stasiunAwal = elem;
             }
         }
+    }
     
+    public void setHarga(int harga){
+        this.harga = harga;
     }
 
     public Stasiun getStasiunAkhir() {
@@ -70,6 +74,18 @@ public class Jadwal {
         return stasiunAwal;
     }
 
+    public Kereta getKereta() {
+        return kereta;
+    }
+
+    public LocalTime getWaktuKeberangkatan() {
+        return waktuKeberangkatan;
+    }
+
+    public LocalTime getWaktuKedatangan() {
+        return waktuKedatangan;
+    }
+    
     public String toString() {
         return kereta.getNama()+" "+waktuKeberangkatan+" "+waktuKedatangan+" "+kursiTersedia;
     }
