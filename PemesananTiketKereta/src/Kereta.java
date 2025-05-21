@@ -3,7 +3,6 @@ public class Kereta {
     private String Nama;
     private String TipeKereta;
     private int harga;
-    public static Kereta[] listKereta = {new Kereta("GatotBeling", "EKONOMI", 100000), new Kereta("Arjuna", "EKONOMI", 90000)};
 
     // Method =============================
     public Kereta(String Nama, String tipe, int harga) {
