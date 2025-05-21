@@ -16,7 +16,11 @@ public class Kereta {
     public void setNama(String Nama) {
         this.Nama = Nama;
     }
-
+    
+    public void setHarga(int harga){
+        this.harga = harga;
+    }
+    
     public String getNama() {
         return this.Nama;
     }

@@ -71,35 +71,35 @@ class User {
         }
     }
 
-    public static boolean login(String userName, String inputPassword) {
+    public static User login(String userName, String inputPassword) {
         String basePath = System.getProperty("user.dir");
         String userPath = basePath + File.separator + "PemesananTiketKereta" + File.separator + "Users" + File.separator + userName;
         File userFolder = new File(userPath);
 
         if (!userFolder.exists() || !userFolder.isDirectory()) {
             System.out.println("User not found.");
-            return false;
+            return null;
         }
 
         File passwordFile = new File(userPath + File.separator + "password.txt");
 
         if (!passwordFile.exists()) {
             System.out.println("Password file not found.");
-            return false;
+            return null;
         }
 
         try {
             String savedPassword = Files.readString(passwordFile.toPath()).trim();
             if (savedPassword.equals(inputPassword)) {
                 System.out.println("Login successful!");
-                return true;
+                return new User(userName, savedPassword);
             } else {
                 System.out.println("Incorrect password.");
-                return false;
+                return null;
             }
         } catch (IOException e) {
             System.out.println("Error reading password file: " + e.getMessage());
-            return false;
+            return null;
         }
     }
 }
