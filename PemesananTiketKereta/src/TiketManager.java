@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,10 @@ public class TiketManager {
     }
 
     private void setJadwals() {
-        try(BufferedReader reader = new BufferedReader(new FileReader("./Assest/Jadwal.txt"))) {
+        String basePath = System.getProperty("user.dir");
+        String JadwalPath = basePath + File.separator + "PemesananTiketKereta" + File.separator + "Assest" + File.separator + "Jadwal.txt";
+        
+        try(BufferedReader reader = new BufferedReader(new FileReader(JadwalPath))) {
             String Line;
             while ((Line = reader.readLine()) != null) {
                 String[] Atribut = Line.split(" ");
@@ -40,7 +44,9 @@ public class TiketManager {
     }
 
     private void setKeretas() {
-        try(BufferedReader reader = new BufferedReader(new FileReader("./Assest/Kereta.txt"))) {
+        String basePath = System.getProperty("user.dir");
+        String KeretaPath = basePath + File.separator + "PemesananTiketKereta" + File.separator + "Assest" + File.separator + "Kereta.txt";
+        try(BufferedReader reader = new BufferedReader(new FileReader(KeretaPath))) {
             String Line;
             while ((Line = reader.readLine()) != null) {
                 String[] Atribut = Line.split(" ");
@@ -53,7 +59,9 @@ public class TiketManager {
     }
 
     private void setStasiuns() {
-        try(BufferedReader reader = new BufferedReader(new FileReader("./Assest/Stasiun.txt"))) {
+        String basePath = System.getProperty("user.dir");
+        String StasiunPath = basePath + File.separator + "PemesananTiketKereta" + File.separator + "Assest" + File.separator + "Stasiun.txt";
+        try(BufferedReader reader = new BufferedReader(new FileReader(StasiunPath))) {
             String Line;
             while ((Line = reader.readLine()) != null) {
                 String[] Atribut = Line.split(" ");

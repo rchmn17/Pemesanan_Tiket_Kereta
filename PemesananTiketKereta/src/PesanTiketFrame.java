@@ -48,9 +48,9 @@ public class PesanTiketFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,7 +59,7 @@ public class PesanTiketFrame extends javax.swing.JFrame {
         jLabel1.setText("Selamat Datang! Mau ke mana hari ini?");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Surabaya", "Medan", "Jakarta", "Yogyakarta", "Purworejo", "Kota Malang", "Banyumas", "Bandung", "Semarang", "Blitar", "Surakarta" }));
-        jComboBox1.setSelectedIndex(-1);
+        jComboBox1.setToolTipText("");
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -67,7 +67,6 @@ public class PesanTiketFrame extends javax.swing.JFrame {
         });
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Surabaya", "Medan", "Jakarta", "Yogyakarta ", "Purworejo", "Kota Malang", "Banyumas", "Bandung", "Semarang", "Blitar", "Surakarta" }));
-        jComboBox2.setSelectedIndex(-1);
 
         jLabel2.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 12)); // NOI18N
         jLabel2.setText("Stasiun Asal");
@@ -135,9 +134,9 @@ public class PesanTiketFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jComboBox1, 0, 150, Short.MAX_VALUE)

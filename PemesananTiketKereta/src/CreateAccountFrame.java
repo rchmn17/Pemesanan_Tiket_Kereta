@@ -136,6 +136,8 @@ public class CreateAccountFrame extends javax.swing.JFrame {
         
         if (!password1.equals(password2)) {
             JOptionPane.showMessageDialog(this, "Password tidak sama");
+            jPasswordField1.setText("");
+            jPasswordField2.setText("");
         } else {
             User.buatAkun(username, password1);
             JOptionPane.showMessageDialog(this, "Akun berhasil dibuat");
