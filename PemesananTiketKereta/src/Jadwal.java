@@ -61,10 +61,16 @@ public class Jadwal {
         }
     
     }
-    
+
+    public Stasiun getStasiunAkhir() {
+        return stasiunAkhir;
+    }
+
+    public Stasiun getStasiunAwal() {
+        return stasiunAwal;
+    }
+
     public String toString() {
         return kereta.getNama()+" "+waktuKeberangkatan+" "+waktuKedatangan+" "+kursiTersedia;
     }
-
-
 }

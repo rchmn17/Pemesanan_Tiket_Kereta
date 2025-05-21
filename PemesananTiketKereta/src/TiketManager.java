@@ -62,6 +62,17 @@ public class TiketManager {
         } catch (Exception e) {
 
         }
-        
+    }
+
+    public List<Jadwal> cariJadwal(String lokasiAwal, String lokasiAkhir){
+        List<Jadwal> jadwalBaru = new ArrayList<>();
+        for (Jadwal j : jadwals) {
+            if (j.getStasiunAkhir() != null && j.getStasiunAwal() != null){
+                if (j.getStasiunAwal().getKota().equals(lokasiAwal) && j.getStasiunAkhir().getKota().equals(lokasiAkhir)){
+                    jadwalBaru.add(j);
+                }
+            }
+        }
+        return  jadwalBaru;
     }
 }
