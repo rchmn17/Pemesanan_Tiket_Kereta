@@ -59,7 +59,7 @@ public class PesanTiketFrame extends javax.swing.JFrame {
         jLabel1.setText("Selamat Datang! Mau ke mana hari ini?");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Surabaya", "Medan", "Jakarta", "Yogyakarta", "Purworejo", "Kota Malang", "Banyumas", "Bandung", "Semarang", "Blitar", "Surakarta" }));
-        jComboBox1.setToolTipText("");
+        jComboBox1.setSelectedIndex(-1);
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -67,6 +67,7 @@ public class PesanTiketFrame extends javax.swing.JFrame {
         });
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Surabaya", "Medan", "Jakarta", "Yogyakarta ", "Purworejo", "Kota Malang", "Banyumas", "Bandung", "Semarang", "Blitar", "Surakarta" }));
+        jComboBox2.setSelectedIndex(-1);
 
         jLabel2.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 12)); // NOI18N
         jLabel2.setText("Stasiun Asal");
@@ -91,7 +92,7 @@ public class PesanTiketFrame extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 12)); // NOI18N
         jLabel6.setText("Tanggal Keberangkatan");
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back.png"))); // NOI18N
+        jButton2.setText("Logout");
         jButton2.setBorder(null);
         jButton2.setBorderPainted(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -124,8 +125,8 @@ public class PesanTiketFrame extends javax.swing.JFrame {
                 .addGap(54, 54, 54))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(107, 107, 107)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(94, 94, 94)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
@@ -192,7 +193,6 @@ public class PesanTiketFrame extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.user = null;
         this.dispose();
-        new LoginFrame().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -200,7 +200,13 @@ public class PesanTiketFrame extends javax.swing.JFrame {
         String kotaAkhir = (String)jComboBox2.getSelectedItem();
         
         if (kotaAwal == null || kotaAkhir == null){
-            JOptionPane.showMessageDialog(this, "Masukkan kota keberangkatan dan tujuan dengan benar.");
+            JOptionPane.showMessageDialog(this, "Masukkan stasiun asal dan tujuan dengan benar.");
+            return;
+        }
+        
+        if (kotaAwal.equals(kotaAkhir)) {
+            JOptionPane.showMessageDialog(this, "Stasiun asal dan tujuan tidak boleh sama.");
+            return;
         }
         
         Date tanggal = jDateChooser1.getDate();

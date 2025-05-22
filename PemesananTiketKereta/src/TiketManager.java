@@ -29,7 +29,7 @@ public class TiketManager {
 
     private void setJadwals() {
         String basePath = System.getProperty("user.dir");
-        String JadwalPath = basePath + File.separator + "PemesananTiketKereta" + File.separator + "Assest" + File.separator + "Jadwal.txt";
+        String JadwalPath = basePath + File.separator + "Assest" + File.separator + "Jadwal.txt";
         
         try(BufferedReader reader = new BufferedReader(new FileReader(JadwalPath))) {
             String Line;
@@ -45,7 +45,7 @@ public class TiketManager {
 
     private void setKeretas() {
         String basePath = System.getProperty("user.dir");
-        String KeretaPath = basePath + File.separator + "PemesananTiketKereta" + File.separator + "Assest" + File.separator + "Kereta.txt";
+        String KeretaPath = basePath + File.separator + "Assest" + File.separator + "Kereta.txt";
         try(BufferedReader reader = new BufferedReader(new FileReader(KeretaPath))) {
             String Line;
             while ((Line = reader.readLine()) != null) {
@@ -60,7 +60,7 @@ public class TiketManager {
 
     private void setStasiuns() {
         String basePath = System.getProperty("user.dir");
-        String StasiunPath = basePath + File.separator + "PemesananTiketKereta" + File.separator + "Assest" + File.separator + "Stasiun.txt";
+        String StasiunPath = basePath + File.separator + "Assest" + File.separator + "Stasiun.txt";
         try(BufferedReader reader = new BufferedReader(new FileReader(StasiunPath))) {
             String Line;
             while ((Line = reader.readLine()) != null) {

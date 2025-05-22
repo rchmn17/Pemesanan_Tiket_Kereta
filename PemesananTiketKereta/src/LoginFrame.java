@@ -148,7 +148,7 @@ public class LoginFrame extends javax.swing.JFrame {
         
         if (loggedInUser != null) {
             JOptionPane.showMessageDialog(this, "Login berhasil");
-            this.setVisible(false);
+            this.dispose();
             PesanTiketFrame tiketFrame = new PesanTiketFrame(loggedInUser);
             tiketFrame.setLocationRelativeTo(null);
             tiketFrame.setVisible(true);
@@ -157,6 +157,8 @@ public class LoginFrame extends javax.swing.JFrame {
             @Override
             public void windowClosed(WindowEvent e) {
                 LoginFrame.this.setVisible(true);
+                LoginFrame.this.txtUsername.setText("");
+                LoginFrame.this.pwdUser.setText("");
             }
         });
         } else {

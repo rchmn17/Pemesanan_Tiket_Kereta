@@ -36,7 +36,7 @@ class User {
 
     public static void buatAkun(String userName, String password) {
         String basePath = System.getProperty("user.dir");
-        String userPath = basePath + File.separator + "PemesananTiketKereta" + File.separator + "Users" + File.separator + userName;
+        String userPath = basePath + File.separator + "Users" + File.separator + userName;
 
         File userDir = new File(userPath);
         File passwordFile = new File(userDir, "Password.txt");
@@ -73,7 +73,7 @@ class User {
 
     public static User login(String userName, String inputPassword) {
         String basePath = System.getProperty("user.dir");
-        String userPath = basePath + File.separator + "PemesananTiketKereta" + File.separator + "Users" + File.separator + userName;
+        String userPath = basePath + File.separator + "Users" + File.separator + userName;
         File userFolder = new File(userPath);
 
         if (!userFolder.exists() || !userFolder.isDirectory()) {
