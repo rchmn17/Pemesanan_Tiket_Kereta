@@ -134,6 +134,10 @@ public class CreateAccountFrame extends javax.swing.JFrame {
         String password1 = new String(jPasswordField1.getPassword());
         String password2 = new String(jPasswordField2.getPassword());
         
+        if (username .isBlank() || password1.isBlank() || password2.isBlank()){
+            JOptionPane.showMessageDialog(this, "Input tidak sesuai : username atau password ada yang kosong.");
+            return;
+        }
         if (!password1.equals(password2)) {
             JOptionPane.showMessageDialog(this, "Password tidak sama");
             jPasswordField1.setText("");
