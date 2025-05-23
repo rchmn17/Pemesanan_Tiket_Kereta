@@ -1,52 +1,39 @@
-package EntityClass;
+package ClassDAO;
 
+import EntityClass.User;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
+public class UserDAO {
+    public static ArrayList<User> users = new ArrayList<User>();
 
-public class User {
-    String name;
-    String password;
-    ArrayList<String> history;
+    public static void loadUsers() {
+        String path = System.getProperty("user.dir") +File.separator + "Users";
 
-    public User(String name, String password) {
-        this.name = name;
-        this.password = password;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setHistory() {
-
-    }
-
-    public String getHistory() {
-        return "";
-    }
-    
-    public boolean checkPassword(String pass) {
-        if(this.password.equals(pass)) {
-            return true;
-        } else {
-            return false;
+        File folder = new File(path);
+        if(folder.isDirectory()) {
+            String[] listNamaUser = folder.list();
+            for (int i=0 ;i<listNamaUser.length; i++) {
+                String passpath = path+File.separator+listNamaUser[i]+File.separator+"Password.txt";
+                try (BufferedReader reader = new BufferedReader(new FileReader(path))){
+                    String Line = reader.readLine();
+                    users.add(new User(listNamaUser[i], Line));
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
         }
+        
+         
     }
 
     public static void buatAkun(String userName, String password) {
         String basePath = System.getProperty("user.dir");
-        String userPath = basePath + File.separator + "Users" + File.separator + userName;
+        String userPath = basePath + File.separator + "PemesananTiketKereta" + File.separator + "Users" + File.separator + userName;
 
         File userDir = new File(userPath);
         File passwordFile = new File(userDir, "Password.txt");
@@ -81,9 +68,10 @@ public class User {
         }
     }
 
+
     public static User login(String userName, String inputPassword) {
         String basePath = System.getProperty("user.dir");
-        String userPath = basePath + File.separator + "Users" + File.separator + userName;
+        String userPath = basePath + File.separator + "PemesananTiketKereta" + File.separator + "Users" + File.separator + userName;
         File userFolder = new File(userPath);
 
         if (!userFolder.exists() || !userFolder.isDirectory()) {
@@ -112,4 +100,24 @@ public class User {
             return null;
         }
     }
+    
+    public User newLogin(String username, String password) {
+        for (User elem : users) {
+            if(username.equals(elem.getName())) {
+                if (elem.checkPassword(password)) {
+                    return elem;
+                } else {
+                    return null;
+                }
+            }
+        }
+        System.out.println("User not found");
+        return null;
+    }
+    
+    public ArrayList<User> getusers() {
+        return users;
+    }
+    
+    
 }
