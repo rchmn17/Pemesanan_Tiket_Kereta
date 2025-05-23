@@ -4,7 +4,7 @@ public class Stasiun {
     String nama;
     String kota;
     
-    Stasiun(String nama, String kota) {
+    public Stasiun(String nama, String kota) {
         this.nama = nama;
         this.kota = kota;
     }

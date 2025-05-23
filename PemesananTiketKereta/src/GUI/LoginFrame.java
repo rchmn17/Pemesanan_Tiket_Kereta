@@ -1,5 +1,6 @@
 package GUI;
 
+import ClassDAO.*;
 import EntityClass.User;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
@@ -188,7 +189,14 @@ public class LoginFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    public static UserDAO users = new UserDAO();
     public static void main(String args[]) {
+        UserDAO.loadUsers();
+        for (User elem : UserDAO.users) {
+            System.out.println("a");
+            System.out.println(elem.getName());
+        }
+        // buat objek UerDAO
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
