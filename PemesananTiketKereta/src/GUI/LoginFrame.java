@@ -192,10 +192,6 @@ public class LoginFrame extends javax.swing.JFrame {
     public static UserDAO users = new UserDAO();
     public static void main(String args[]) {
         UserDAO.loadUsers();
-        for (User elem : UserDAO.users) {
-            System.out.println("a");
-            System.out.println(elem.getName());
-        }
         // buat objek UerDAO
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

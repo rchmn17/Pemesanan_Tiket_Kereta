@@ -19,7 +19,7 @@ public class UserDAO {
             String[] listNamaUser = folder.list();
             for (int i=0 ;i<listNamaUser.length; i++) {
                 String passpath = path+File.separator+listNamaUser[i]+File.separator+"Password.txt";
-                try (BufferedReader reader = new BufferedReader(new FileReader(path))){
+                try (BufferedReader reader = new BufferedReader(new FileReader(passpath))){
                     String Line = reader.readLine();
                     users.add(new User(listNamaUser[i], Line));
                 } catch (Exception e) {
