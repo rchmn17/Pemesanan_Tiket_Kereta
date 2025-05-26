@@ -1,13 +1,13 @@
 package EntityClass;
 
 public class Tiket {
-    User user;
+    String nama;
     String nomorKursi;
     String idTiket;
     Jadwal jadwal;
 
-    public Tiket(User user, String nomorKursi, String idTiket, Jadwal jadwal) {
-        this.user = user;
+    public Tiket(String nama, String nomorKursi, String idTiket, Jadwal jadwal) {
+        this.nama = nama;
         this.nomorKursi = nomorKursi;
         this.idTiket = idTiket;
         this.jadwal = jadwal;
@@ -29,12 +29,12 @@ public class Tiket {
         return jadwal;
     }
 
-    public User getUser() {
-        return user;
+    public String getNama() {
+        return nama;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 
     public String getIdTiket() {

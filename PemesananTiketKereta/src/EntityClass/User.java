@@ -1,15 +1,12 @@
 package EntityClass;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.util.ArrayList;
+import java.util.List;
 
 public class User {
+
     String name;
     String password;
-    ArrayList<String> history;
+    List<Pemesanan> historyPemesanan;
 
     public User(String name, String password) {
         this.name = name;
@@ -28,88 +25,15 @@ public class User {
         this.password = password;
     }
 
-    public void setHistory() {
-
+    public void setHistoryPemesanan(List<Pemesanan> historyPemesanan) {
+        this.historyPemesanan = historyPemesanan;
     }
 
-    public String getHistory() {
-        return "";
-    }
-    
-    public boolean checkPassword(String pass) {
-        if(this.password.equals(pass)) {
-            return true;
-        } else {
-            return false;
-        }
+    public String getPassword() {
+        return password;
     }
 
-    public static void buatAkun(String userName, String password) {
-        String basePath = System.getProperty("user.dir");
-        String userPath = basePath + File.separator + "Users" + File.separator + userName;
-
-        File userDir = new File(userPath);
-        File passwordFile = new File(userDir, "Password.txt");
-        File historyFile = new File(userDir, "History.txt");
-
-        if (!userDir.exists()) {
-            if (userDir.mkdirs()) {
-                System.out.println("Folder berhasil dibuat.");
-            } else {
-                System.out.println("Gagal membuat folder.");
-                return;
-            }
-        } else {
-            System.out.println("Folder sudah ada.");
-        }
-
-        try (FileWriter writer = new FileWriter(passwordFile)) {
-            writer.write(password);
-            System.out.println("Password berhasil disimpan.");
-        } catch (IOException e) {
-            System.out.println("Error menulis password: " + e.getMessage());
-        }
-
-        try {
-            if (historyFile.createNewFile()) {
-                System.out.println("File history dibuat.");
-            } else {
-                System.out.println("File history sudah ada.");
-            }
-        } catch (IOException e) {
-            System.out.println("Error membuat file history: " + e.getMessage());
-        }
-    }
-
-    public static User login(String userName, String inputPassword) {
-        String basePath = System.getProperty("user.dir");
-        String userPath = basePath + File.separator + "Users" + File.separator + userName;
-        File userFolder = new File(userPath);
-
-        if (!userFolder.exists() || !userFolder.isDirectory()) {
-            System.out.println("User not found.");
-            return null;
-        }
-
-        File passwordFile = new File(userPath + File.separator + "password.txt");
-
-        if (!passwordFile.exists()) {
-            System.out.println("Password file not found.");
-            return null;
-        }
-
-        try {
-            String savedPassword = Files.readString(passwordFile.toPath()).trim();
-            if (savedPassword.equals(inputPassword)) {
-                System.out.println("Login successful!");
-                return new User(userName, savedPassword);
-            } else {
-                System.out.println("Incorrect password.");
-                return null;
-            }
-        } catch (IOException e) {
-            System.out.println("Error reading password file: " + e.getMessage());
-            return null;
-        }
+    public List<Pemesanan> getHistoryPemesanan() {
+        return historyPemesanan;
     }
 }

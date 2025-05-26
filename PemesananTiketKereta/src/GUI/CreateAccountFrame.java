@@ -1,4 +1,5 @@
 package GUI;
+import ClassDAO.UserDAO;
 import EntityClass.User;
 import javax.swing.JOptionPane;
 
@@ -144,7 +145,7 @@ public class CreateAccountFrame extends javax.swing.JFrame {
             jPasswordField1.setText("");
             jPasswordField2.setText("");
         } else {
-            User.buatAkun(username, password1);
+            UserDAO.buatAkun(username, password1);
             JOptionPane.showMessageDialog(this, "Akun berhasil dibuat");
             this.dispose();
         }
