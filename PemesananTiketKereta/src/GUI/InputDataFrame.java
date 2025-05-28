@@ -27,6 +27,7 @@ public class InputDataFrame extends javax.swing.JFrame {
     private Jadwal jadwalPemesanan;
     private Date tanggalPemesanan;
     private User loggedInUser;
+    private static List<TemplateInputData> panelInput = new ArrayList<TemplateInputData>();
 
     /**
      * Creates new form InputDataFrame
@@ -128,21 +129,32 @@ public class InputDataFrame extends javax.swing.JFrame {
         Pemesanan pesanan = new Pemesanan(jadwalPemesanan, hari, tanggal, loggedInUser, itemOrder);
         
         this.dispose();
-        new PembayaranKeretaFrame(pesanan, jumlahDewasa, jumlahAnak).setVisible(true);
+        new PembayaranKeretaFrame(getNama(),pesanan, jumlahDewasa, jumlahAnak).setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    
+    public String[] getNama() {
+        String[] dataNama = new String[panelInput.size()];
+        for(int i=0 ;i<panelInput.size();i++ ) {
+            dataNama[i] = panelInput.get(i).getNama();
+        }
+        return dataNama;
+    }
+    
+    
     private void loadPenumpangPanel(int jumlahPenumpang) {
         jPanel2.removeAll();
+        
         for (int i = 0; i < jumlahPenumpang; i++) {
             System.out.println(jumlahPenumpang);
-            TemplateInputData panel = new TemplateInputData();
+            panelInput.add(new TemplateInputData());
 
-            panel.getjLabel1().setText("Nama:");
-            panel.getjLabel2().setText("Gender:");
-            panel.getjTextField1().setText("");
-            panel.getjTextField2().setText("");
+            panelInput.get(i).getjLabel1().setText("Nama:");
+            panelInput.get(i).getjLabel2().setText("Gender:");
+            panelInput.get(i).getjTextField1().setText("");
+            panelInput.get(i).getjTextField2().setText("");
 
-            jPanel2.add(panel);
+            jPanel2.add(panelInput.get(i));
             jPanel2.add(Box.createRigidArea(new Dimension(0, 10)));
         }
         jPanel2.revalidate();

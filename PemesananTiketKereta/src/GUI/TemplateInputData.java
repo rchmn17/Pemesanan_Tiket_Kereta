@@ -37,6 +37,12 @@ public class TemplateInputData extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(0, 153, 153));
 
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
         jLabel1.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 12)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Nama :");
@@ -77,6 +83,10 @@ public class TemplateInputData extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
     public JLabel getjLabel1() {
         return jLabel1;
     }
@@ -91,6 +101,10 @@ public class TemplateInputData extends javax.swing.JPanel {
 
     public JTextField getjTextField2() {
         return jTextField2;
+    }
+    
+    public String getNama() {
+        return jTextField1.getText();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

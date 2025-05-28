@@ -2,6 +2,7 @@ package GUI;
 
 import EntityClass.Pemesanan;
 import EntityClass.Tiket;
+import javax.swing.JFrame;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -16,15 +17,17 @@ public class PembayaranKeretaFrame extends javax.swing.JFrame {
     private Pemesanan pesanan;
     private int jumlahDewasa;
     private int jumlahAnak;
+    private String[] Namas;
 
     /**
      * Creates new form PembayaranKeretaFrame
      */
 
-    public PembayaranKeretaFrame(Pemesanan pesanan, int jumlahDewasa, int jumlahAnak) {
+    public PembayaranKeretaFrame(String[] Namas,Pemesanan pesanan, int jumlahDewasa, int jumlahAnak) {
         this.pesanan = pesanan;
         this.jumlahDewasa = jumlahDewasa;
         this.jumlahAnak = jumlahAnak;
+        this.Namas = Namas;
         initComponents();
         this.setLocationRelativeTo(null);
         this.jLabel7.setText(String.valueOf(jumlahDewasa));
@@ -171,7 +174,10 @@ public class PembayaranKeretaFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        PaymentFrame payment = new PaymentFrame(Namas,pesanan, jumlahDewasa, jumlahAnak);
+        payment.setVisible(true);
+        this.setVisible(false);
+        payment.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private int getHargaPesanan() {
