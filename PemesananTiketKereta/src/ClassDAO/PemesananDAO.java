@@ -7,10 +7,11 @@ package ClassDAO;
 import EntityClass.Jadwal;
 import EntityClass.Pemesanan;
 import EntityClass.Tiket;
-import EntityClass.User;
+import Session.Session;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -76,5 +77,24 @@ public class PemesananDAO {
 
     public List<Pemesanan> getPesanans() {
         return pesanans;
+    }
+    
+    public void writeFile(Pemesanan p){
+        String userPath = System.getProperty("user.dir") + File.separator + "Assets" + File.separator + "Pemesanan.txt";
+        String tiket = "";
+        for (int i=0; i<p.getItemOrder().size(); i++){
+            if (i<(p.getItemOrder().size()-1)){
+                tiket += p.getItemOrder().get(i).getIdTiket() + ",";
+            } else {
+                tiket += p.getItemOrder().get(i).getIdTiket();
+            }
+        }
+        try (FileWriter writer = new FileWriter(userPath, true)) {
+            writer.write("\n" + generateIdPesanan() + " " + p.getJadwal().getIdJadwal() + " " + p.getHari() + " " + p.getTanggal() + " " + Session.getUser().getName() + " " + tiket);
+            System.out.println("Pesanan berhasil disimpan.");
+        } catch (IOException e) {
+            System.out.println("Error menulis pesanan: " + e.getMessage());
+        }
+        loadPemesanan(jDAO.getJadwals(), tDAO.getTikets());
     }
 }
