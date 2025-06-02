@@ -202,7 +202,7 @@ public class PaymentFrame extends javax.swing.JFrame {
                 
                 if(statusTransfer.equals("sukses")){
                     System.out.println("testing");
-                    PembayaranBerhasil pb = new PembayaranBerhasil();
+                    PembayaranBerhasil pb = new PembayaranBerhasil(pesanan.getUserPembeli());
                     pb.setVisible(true);
                     this.dispose();
                     statusTransfer = "idle";
