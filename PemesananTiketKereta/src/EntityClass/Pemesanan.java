@@ -3,20 +3,22 @@ package EntityClass;
 import java.util.List;
 
 public class Pemesanan {
+    private String idPesanan;
     private Jadwal jadwal;
     private String hari;
     private String tanggal;
     private User userPembeli;
     private List<Tiket> itemOrder;
 
-    public Pemesanan(Jadwal jadwal, String hari, String tanggal, User userPembeli, List<Tiket> itemOrder) {
+    public Pemesanan(String idPesanan, Jadwal jadwal, String hari, String tanggal, User userPembeli, List<Tiket> itemOrder) {
+        this.idPesanan = idPesanan;
         this.jadwal = jadwal;
         this.hari = hari;
         this.tanggal = tanggal;
         this.userPembeli = userPembeli;
         this.itemOrder = itemOrder;
     }
-
+    
     public Jadwal getJadwal() {
         return jadwal;
     }

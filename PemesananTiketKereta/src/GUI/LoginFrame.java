@@ -1,7 +1,11 @@
 package GUI;
 
 import ClassDAO.*;
+import EntityClass.Jadwal;
+import EntityClass.Pemesanan;
+import EntityClass.Tiket;
 import EntityClass.User;
+import Session.Session;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 
@@ -14,7 +18,9 @@ import javax.swing.JOptionPane;
  * @author Umar
  */
 public class LoginFrame extends javax.swing.JFrame {
-    private UserDAO users;
+    private UserDAO users = new UserDAO();
+    private PemesananDAO dao = new PemesananDAO();
+    
     /**
      * Creates new form LoginFrame
      */
@@ -23,7 +29,6 @@ public class LoginFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.txtUsername.setText("");
         this.pwdUser.setText("");
-        this.users = new UserDAO();
     }
 
     /**
@@ -40,8 +45,8 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         pwdUser = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
+        btnCreateAcc = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -64,19 +69,19 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 12)); // NOI18N
-        jButton1.setText("LOGIN");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnLogin.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 12)); // NOI18N
+        btnLogin.setText("LOGIN");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnLoginActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 12)); // NOI18N
-        jButton2.setText("CREATE ACCOUNT");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnCreateAcc.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 12)); // NOI18N
+        btnCreateAcc.setText("CREATE ACCOUNT");
+        btnCreateAcc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnCreateAccActionPerformed(evt);
             }
         });
 
@@ -110,10 +115,10 @@ public class LoginFrame extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jButton1)
+                                    .addComponent(btnLogin)
                                     .addGap(160, 160, 160))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jButton2)
+                                    .addComponent(btnCreateAcc)
                                     .addGap(123, 123, 123)))))))
         );
         layout.setVerticalGroup(
@@ -130,11 +135,11 @@ public class LoginFrame extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(pwdUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnLogin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(btnCreateAcc)
                 .addGap(33, 33, 33))
         );
 
@@ -145,7 +150,7 @@ public class LoginFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsernameActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         String username = txtUsername.getText();
         String password = new String(pwdUser.getPassword());
 
@@ -153,16 +158,18 @@ public class LoginFrame extends javax.swing.JFrame {
 
         if (loggedInUser != null) {
             JOptionPane.showMessageDialog(this, "Login berhasil");
+            Session.setUser(loggedInUser);
             this.dispose();
-            new PesanTiketFrame(loggedInUser).setVisible(true);
+            new Dashboard().setVisible(true);
+//            new PesanTiketFrame(loggedInUser).setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "Username tidak ditemukan atau password salah.");
             txtUsername.setText("");
             pwdUser.setText("");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnLoginActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnCreateAccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAccActionPerformed
         this.setVisible(false);
 
         CreateAccountFrame createFrame = new CreateAccountFrame();
@@ -175,7 +182,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 LoginFrame.this.setVisible(true);
             }
         });
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnCreateAccActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,8 +221,8 @@ public class LoginFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnCreateAcc;
+    private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

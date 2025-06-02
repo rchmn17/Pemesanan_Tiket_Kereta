@@ -1,5 +1,6 @@
 package GUI;
 
+import TemplateGUI.TemplateInputData;
 import EntityClass.*;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -126,10 +127,10 @@ public class InputDataFrame extends javax.swing.JFrame {
         formatter = new SimpleDateFormat("dd MMMM yyyy", new Locale("id", "ID"));
         String tanggal = formatter.format(tanggalPemesanan);
         
-        Pemesanan pesanan = new Pemesanan(jadwalPemesanan, hari, tanggal, loggedInUser, itemOrder);
+//        Pemesanan pesanan = new Pemesanan(jadwalPemesanan, hari, tanggal, loggedInUser, itemOrder);
         
         this.dispose();
-        new PembayaranKeretaFrame(getNama(),pesanan, jumlahDewasa, jumlahAnak).setVisible(true);
+//        new PembayaranKeretaFrame(getNama(),pesanan, jumlahDewasa, jumlahAnak).setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     
