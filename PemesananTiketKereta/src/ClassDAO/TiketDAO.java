@@ -9,6 +9,7 @@ import EntityClass.Tiket;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +48,37 @@ public class TiketDAO {
             }
         }
         return tiketBaru;
+    }
+    
+    public static String getLastIdTiket() {
+        String lastLine = null;
+        String path = System.getProperty("user.dir") + File.separator + "Assets" + File.separator + "Tiket.txt";
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.trim().isEmpty() || line.startsWith("ID_PESANAN")) {
+                    continue;
+                }
+                lastLine = line;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (lastLine != null) {
+            String[] columns = lastLine.split("\\s+");
+            if (columns.length > 0) {
+                return columns[0].trim();
+            }
+        }
+        return null;
+    }
+    
+    public static String generateIdTiket() {
+        String idTerakhir = getLastIdTiket();
+        int id = Integer.parseInt(idTerakhir.substring(1)) + 1;
+        return String.format("T%03d", id);
     }
     
     public List<Tiket> getTikets() {

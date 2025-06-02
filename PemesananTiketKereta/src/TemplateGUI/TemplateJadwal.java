@@ -31,14 +31,15 @@ public class TemplateJadwal extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        namaKereta = new javax.swing.JLabel();
+        tipeKereta = new javax.swing.JLabel();
+        StasiunAwal = new javax.swing.JLabel();
+        jamPergi = new javax.swing.JLabel();
+        StasiunAkhir = new javax.swing.JLabel();
+        jamSampai = new javax.swing.JLabel();
+        harga = new javax.swing.JLabel();
+        btnPesan = new javax.swing.JButton();
+        kursiTersedia = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -56,137 +57,150 @@ public class TemplateJadwal extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(362, 86));
         setPreferredSize(new java.awt.Dimension(362, 86));
 
-        jLabel6.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
-        jLabel6.setText("Kereta (01)");
+        namaKereta.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
+        namaKereta.setText("Kereta (01)");
 
-        jLabel7.setText("Ekonomi (EK)");
+        tipeKereta.setText("Ekonomi (EK)");
 
-        jLabel8.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 10)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("MALANG");
+        StasiunAwal.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 10)); // NOI18N
+        StasiunAwal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        StasiunAwal.setText("MALANG");
 
-        jLabel9.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("08.00");
+        jamPergi.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
+        jamPergi.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jamPergi.setText("08.00");
 
-        jLabel10.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 10)); // NOI18N
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("SOLO");
+        StasiunAkhir.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 10)); // NOI18N
+        StasiunAkhir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        StasiunAkhir.setText("SOLO");
 
-        jLabel11.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("13.00");
+        jamSampai.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
+        jamSampai.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jamSampai.setText("13.00");
 
-        jLabel12.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
-        jLabel12.setText("Rp. 200.000,-");
+        harga.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
+        harga.setText("Rp. 200.000,-");
 
-        jButton2.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 12)); // NOI18N
-        jButton2.setText("PESAN");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnPesan.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 12)); // NOI18N
+        btnPesan.setText("PESAN");
+        btnPesan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnPesanActionPerformed(evt);
             }
         });
+
+        kursiTersedia.setText("Kursi tersedia");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(79, 79, 79))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(29, 29, 29)
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(26, 26, 26))
+                    .addComponent(namaKereta)
+                    .addComponent(tipeKereta))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jamPergi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(StasiunAwal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(StasiunAkhir, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jamSampai, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(kursiTersedia)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnPesan, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(harga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel10, jLabel11, jLabel8, jLabel9});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {StasiunAkhir, StasiunAwal, jamPergi, jamSampai});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel12)
-                        .addComponent(jLabel6))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
+                        .addGap(12, 12, 12)
+                        .addComponent(harga)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnPesan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(kursiTersedia)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel10))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel11))
-                .addGap(14, 14, 14))
+                            .addComponent(StasiunAkhir)
+                            .addComponent(StasiunAwal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(namaKereta))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jamPergi)
+                            .addComponent(jamSampai)
+                            .addComponent(tipeKereta))))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel10, jLabel11, jLabel8, jLabel9});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {StasiunAkhir, StasiunAwal, jamPergi, jamSampai});
 
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnPesanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnPesanActionPerformed
 
-    public JButton getjButton2() {
-        return jButton2;
+    public JButton getBtnPesan() {
+        return btnPesan;
     }
 
-    public JLabel getjLabel10() {
-        return jLabel10;
+    public JLabel getStasiunAkhir() {
+        return StasiunAkhir;
     }
 
-    public JLabel getjLabel11() {
-        return jLabel11;
+    public JLabel getJamSampai() {
+        return jamSampai;
     }
 
-    public JLabel getjLabel12() {
-        return jLabel12;
+    public JLabel getHarga() {
+        return harga;
     }
 
-    public JLabel getjLabel6() {
-        return jLabel6;
+    public JLabel getNamaKereta() {
+        return namaKereta;
     }
 
-    public JLabel getjLabel7() {
-        return jLabel7;
+    public JLabel getTipeKereta() {
+        return tipeKereta;
     }
 
-    public JLabel getjLabel8() {
-        return jLabel8;
+    public JLabel getStasiunAwal() {
+        return StasiunAwal;
     }
 
-    public JLabel getjLabel9() {
-        return jLabel9;
+    public JLabel getJamPergi() {
+        return jamPergi;
+    }
+
+    public JLabel getKursiTersedia() {
+        return kursiTersedia;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel StasiunAkhir;
+    private javax.swing.JLabel StasiunAwal;
+    private javax.swing.JButton btnPesan;
+    private javax.swing.JLabel harga;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jamPergi;
+    private javax.swing.JLabel jamSampai;
+    private javax.swing.JLabel kursiTersedia;
+    private javax.swing.JLabel namaKereta;
+    private javax.swing.JLabel tipeKereta;
     // End of variables declaration//GEN-END:variables
 }

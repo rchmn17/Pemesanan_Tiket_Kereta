@@ -65,9 +65,13 @@ public class PemesananDAO {
                 return columns[0].trim();
             }
         }
-
-        System.out.println("File kosong atau data tidak valid.");
         return null;
+    }
+    
+    public static String generateIdPesanan() {
+        String idTerakhir = getLastIdPesanan();
+        int id = Integer.parseInt(idTerakhir.substring(1)) + 1;
+        return String.format("P%03d", id);
     }
 
     public List<Pemesanan> getPesanans() {
