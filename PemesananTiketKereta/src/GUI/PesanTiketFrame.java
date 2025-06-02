@@ -1,8 +1,8 @@
 package GUI;
 
+import ClassDAO.JadwalDAO;
 import EntityClass.Jadwal;
 import EntityClass.User;
-import EntityClass.TiketManager;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -13,24 +13,22 @@ import javax.swing.JOptionPane;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author Umar
  */
 public class PesanTiketFrame extends javax.swing.JFrame {
-    private User user;
-    private TiketManager tm = new TiketManager();
+    private JadwalDAO jadwals;
+    private User loggedInUser;
+
     /**
      * Creates new form PesanTiketFrame
      */
-    public PesanTiketFrame() {
+    public PesanTiketFrame(User loggedInUser) {
         initComponents();
         this.setLocationRelativeTo(null);
-    }
-    public PesanTiketFrame(User user) {
-        initComponents();
-        this.user = user;
+        this.loggedInUser = loggedInUser;
+        this.jadwals = new JadwalDAO();
     }
 
     /**
@@ -195,78 +193,44 @@ public class PesanTiketFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.user = null;
         this.dispose();
+        new LoginFrame().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String kotaAwal = (String)jComboBox1.getSelectedItem();
-        String kotaAkhir = (String)jComboBox2.getSelectedItem();
-        
-        if (kotaAwal == null || kotaAkhir == null){
+        String kotaAwal = (String) jComboBox1.getSelectedItem();
+        String kotaAkhir = (String) jComboBox2.getSelectedItem();
+
+        if (kotaAwal == null || kotaAkhir == null) {
             JOptionPane.showMessageDialog(this, "Masukkan stasiun asal dan tujuan dengan benar.");
             return;
         }
-        
+
         if (kotaAwal.equals(kotaAkhir)) {
             JOptionPane.showMessageDialog(this, "Stasiun asal dan tujuan tidak boleh sama.");
             return;
         }
-        
+
         Date tanggal = jDateChooser1.getDate();
         SimpleDateFormat formatter = new SimpleDateFormat("EEEE, dd MMMM yyyy", new Locale("id", "ID"));
         String tanggalFormat = formatter.format(tanggal);
-        int dewasaCount = (int)jSpinner2.getValue();
-        int anakCount = (int)jSpinner1.getValue();
-        
-        if (dewasaCount == -1 || anakCount == -1){
+        int dewasaCount = (int) jSpinner2.getValue();
+        int anakCount = (int) jSpinner1.getValue();
+
+        if (dewasaCount == -1 || anakCount == -1) {
             JOptionPane.showMessageDialog(this, "Masukkan jumlah penumpang dewasa atau anak dengan benar.");
-        } else if (dewasaCount == 0 && anakCount == 0){
+        } else if (dewasaCount == 0 && anakCount == 0) {
             JOptionPane.showMessageDialog(this, "Masukkan jumlah penumpang dewasa atau anak dengan benar.");
         } else {
-            List<Jadwal> jadwalBaru = tm.cariJadwal(kotaAwal, kotaAkhir);
+            List<Jadwal> jadwalBaru = jadwals.cariJadwal(kotaAwal, kotaAkhir);
             this.setVisible(false);
-            ListKeretaFrame jadwalFrame = new ListKeretaFrame(tm, jadwalBaru);
+            ListKeretaFrame jadwalFrame = new ListKeretaFrame(jadwalBaru, dewasaCount, anakCount, loggedInUser, tanggal);
             jadwalFrame.getjLabel1().setText(tanggalFormat);
             jadwalFrame.setLocationRelativeTo(null);
-            jadwalFrame.setVisible(true);   
+            jadwalFrame.setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PesanTiketFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PesanTiketFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PesanTiketFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PesanTiketFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PesanTiketFrame().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

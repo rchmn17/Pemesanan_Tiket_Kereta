@@ -9,19 +9,21 @@ import javax.swing.JOptionPane;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author Umar
  */
 public class LoginFrame extends javax.swing.JFrame {
-
+    private UserDAO users;
     /**
      * Creates new form LoginFrame
      */
     public LoginFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.txtUsername.setText("");
+        this.pwdUser.setText("");
+        this.users = new UserDAO();
     }
 
     /**
@@ -146,24 +148,13 @@ public class LoginFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String username = txtUsername.getText();
         String password = new String(pwdUser.getPassword());
-        
-        User loggedInUser = User.login(username, password);
-        
+
+        User loggedInUser = users.login(username, password);
+
         if (loggedInUser != null) {
             JOptionPane.showMessageDialog(this, "Login berhasil");
             this.dispose();
-            PesanTiketFrame tiketFrame = new PesanTiketFrame(loggedInUser);
-            tiketFrame.setLocationRelativeTo(null);
-            tiketFrame.setVisible(true);
-            
-            tiketFrame.addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e) {
-                LoginFrame.this.setVisible(true);
-                LoginFrame.this.txtUsername.setText("");
-                LoginFrame.this.pwdUser.setText("");
-            }
-        });
+            new PesanTiketFrame(loggedInUser).setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "Username tidak ditemukan atau password salah.");
             txtUsername.setText("");
@@ -173,11 +164,11 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.setVisible(false);
-        
+
         CreateAccountFrame createFrame = new CreateAccountFrame();
         createFrame.setLocationRelativeTo(null);
         createFrame.setVisible(true);
-        
+
         createFrame.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
@@ -189,9 +180,7 @@ public class LoginFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static UserDAO users = new UserDAO();
     public static void main(String args[]) {
-        UserDAO.loadUsers();
         // buat objek UerDAO
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

@@ -1,19 +1,47 @@
+package GUI;
+
+import EntityClass.*;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import javax.swing.Box;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author Umar
  */
 public class InputDataFrame extends javax.swing.JFrame {
 
+    private javax.swing.JPanel TemplateInputData;
+    private int IDTiket = 0;
+    private int jumlahDewasa;
+    private int jumlahAnak;
+    private Jadwal jadwalPemesanan;
+    private Date tanggalPemesanan;
+    private User loggedInUser;
+    private static List<TemplateInputData> panelInput = new ArrayList<TemplateInputData>();
+
     /**
      * Creates new form InputDataFrame
+     *
+     * @param jumlahPenumpang
      */
-    public InputDataFrame() {
+    public InputDataFrame(int jumlahDewasa, int jumlahAnak, Jadwal jadwal, Date tanggal) {
+        this.jumlahDewasa = jumlahDewasa;
+        this.jumlahAnak = jumlahAnak;
+        this.jadwalPemesanan = jadwal;
+        this.tanggalPemesanan = tanggal;
         initComponents();
+        this.setLocationRelativeTo(null);
+        loadPenumpangPanel(jumlahDewasa + jumlahAnak);
     }
 
     /**
@@ -25,15 +53,31 @@ public class InputDataFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(500, 400));
 
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
+        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane1.setViewportView(jPanel2);
+
         jLabel1.setFont(new java.awt.Font("Corbel", 1, 14)); // NOI18N
         jLabel1.setText("Data Penumpang");
+
+        jButton2.setText("Selanjutnya");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -45,7 +89,10 @@ public class InputDataFrame extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(0, 280, Short.MAX_VALUE)))
+                        .addGap(0, 366, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton2)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -54,50 +101,71 @@ public class InputDataFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2)
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Component[] komponen = jPanel2.getComponents();
+        List<Tiket> itemOrder = new ArrayList<>();
+        
+        for (Component c : komponen) {
+            if (c instanceof TemplateInputData panelInput){
+                String nama = panelInput.getjTextField1().getText();
+                itemOrder.add(new Tiket(nama, "10", String.valueOf(IDTiket), jadwalPemesanan));
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InputDataFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InputDataFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InputDataFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InputDataFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+        
+        SimpleDateFormat formatter = new SimpleDateFormat("EEEE", new Locale("id", "ID"));
+        String hari = formatter.format(tanggalPemesanan);
+        formatter = new SimpleDateFormat("dd MMMM yyyy", new Locale("id", "ID"));
+        String tanggal = formatter.format(tanggalPemesanan);
+        
+        Pemesanan pesanan = new Pemesanan(jadwalPemesanan, hari, tanggal, loggedInUser, itemOrder);
+        
+        this.dispose();
+        new PembayaranKeretaFrame(getNama(),pesanan, jumlahDewasa, jumlahAnak).setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new InputDataFrame().setVisible(true);
-            }
-        });
+    
+    public String[] getNama() {
+        String[] dataNama = new String[panelInput.size()];
+        for(int i=0 ;i<panelInput.size();i++ ) {
+            dataNama[i] = panelInput.get(i).getNama();
+        }
+        return dataNama;
+    }
+    
+    
+    private void loadPenumpangPanel(int jumlahPenumpang) {
+        jPanel2.removeAll();
+        
+        for (int i = 0; i < jumlahPenumpang; i++) {
+            System.out.println(jumlahPenumpang);
+            panelInput.add(new TemplateInputData());
+
+            panelInput.get(i).getjLabel1().setText("Nama:");
+            panelInput.get(i).getjLabel2().setText("Gender:");
+            panelInput.get(i).getjTextField1().setText("");
+            panelInput.get(i).getjTextField2().setText("");
+
+            jPanel2.add(panelInput.get(i));
+            jPanel2.add(Box.createRigidArea(new Dimension(0, 10)));
+        }
+        jPanel2.revalidate();
+        jPanel2.repaint();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

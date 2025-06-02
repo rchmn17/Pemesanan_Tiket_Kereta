@@ -10,9 +10,13 @@ import java.util.List;
 public class StasiunDAO {
     private List<Stasiun> stasiuns = new ArrayList<>();
 
+    public StasiunDAO() {
+        loadStasiuns();
+    }
+    
     private void loadStasiuns() {
         String basePath = System.getProperty("user.dir");
-        String StasiunPath = basePath + File.separator + "PemesananTiketKereta" + File.separator + "Assest" + File.separator + "Stasiun.txt";
+        String StasiunPath = basePath + File.separator + "Assest" + File.separator + "Stasiun.txt";
         try(BufferedReader reader = new BufferedReader(new FileReader(StasiunPath))) {
             String Line;
             while ((Line = reader.readLine()) != null) {

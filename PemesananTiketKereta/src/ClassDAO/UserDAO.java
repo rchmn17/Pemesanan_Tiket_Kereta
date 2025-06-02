@@ -6,13 +6,16 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
 public class UserDAO {
-    public static ArrayList<User> users = new ArrayList<User>();
+    private ArrayList<User> users = new ArrayList<>();
 
-    public static void loadUsers() {
-        String path = System.getProperty("user.dir") +File.separator + "Users";
+    public UserDAO() {
+        loadUsers();
+    }
+    
+    public void loadUsers() {
+        String path = System.getProperty("user.dir") + File.separator + "Users";
 
         File folder = new File(path);
         if(folder.isDirectory()) {
@@ -27,13 +30,11 @@ public class UserDAO {
                 }
             }
         }
-        
-         
     }
 
     public static void buatAkun(String userName, String password) {
         String basePath = System.getProperty("user.dir");
-        String userPath = basePath + File.separator + "PemesananTiketKereta" + File.separator + "Users" + File.separator + userName;
+        String userPath = basePath + File.separator + "Users" + File.separator + userName;
 
         File userDir = new File(userPath);
         File passwordFile = new File(userDir, "Password.txt");
@@ -67,44 +68,11 @@ public class UserDAO {
             System.out.println("Error membuat file history: " + e.getMessage());
         }
     }
-
-
-    public static User login(String userName, String inputPassword) {
-        String basePath = System.getProperty("user.dir");
-        String userPath = basePath + File.separator + "PemesananTiketKereta" + File.separator + "Users" + File.separator + userName;
-        File userFolder = new File(userPath);
-
-        if (!userFolder.exists() || !userFolder.isDirectory()) {
-            System.out.println("User not found.");
-            return null;
-        }
-
-        File passwordFile = new File(userPath + File.separator + "password.txt");
-
-        if (!passwordFile.exists()) {
-            System.out.println("Password file not found.");
-            return null;
-        }
-
-        try {
-            String savedPassword = Files.readString(passwordFile.toPath()).trim();
-            if (savedPassword.equals(inputPassword)) {
-                System.out.println("Login successful!");
-                return new User(userName, savedPassword);
-            } else {
-                System.out.println("Incorrect password.");
-                return null;
-            }
-        } catch (IOException e) {
-            System.out.println("Error reading password file: " + e.getMessage());
-            return null;
-        }
-    }
     
-    public User newLogin(String username, String password) {
+    public User login(String username, String password) {
         for (User elem : users) {
             if(username.equals(elem.getName())) {
-                if (elem.checkPassword(password)) {
+                if (checkPassword(elem, password)) {
                     return elem;
                 } else {
                     return null;
@@ -115,9 +83,7 @@ public class UserDAO {
         return null;
     }
     
-    public ArrayList<User> getusers() {
-        return users;
+    public boolean checkPassword(User user, String pass) {
+        return user.getPassword().equals(pass);
     }
-    
-    
 }

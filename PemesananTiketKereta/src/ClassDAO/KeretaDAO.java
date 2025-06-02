@@ -9,9 +9,13 @@ import java.util.List;
 public class KeretaDAO {
     private List<Kereta> keretas = new ArrayList<>();
 
+    public KeretaDAO() {
+        loadKeretas();
+    }
+
     public void loadKeretas() {
         String basePath = System.getProperty("user.dir");
-        String KeretaPath = basePath + File.separator + "PemesananTiketKereta" + File.separator + "Assest" + File.separator + "Kereta.txt";
+        String KeretaPath = basePath + File.separator + "Assest" + File.separator + "Kereta.txt";
         try(BufferedReader reader = new BufferedReader(new FileReader(KeretaPath))) {
             String Line;
             while ((Line = reader.readLine()) != null) {

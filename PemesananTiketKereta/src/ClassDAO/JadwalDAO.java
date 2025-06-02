@@ -11,9 +11,13 @@ import java.util.List;
 public class JadwalDAO {
     private List<Jadwal> jadwals = new ArrayList<>();
 
+    public JadwalDAO() {
+        loadJadwals(new KeretaDAO().getKeretas(), new StasiunDAO().getStasiuns());
+    }
+
     public void loadJadwals(List<Kereta> keretas, List<Stasiun> stasiuns) {
         String basePath = System.getProperty("user.dir");
-        String JadwalPath = basePath + File.separator + "PemesananTiketKereta" + File.separator + "Assest" + File.separator + "Jadwal.txt";
+        String JadwalPath = basePath + File.separator + "Assest" + File.separator + "Jadwal.txt";
         
         try(BufferedReader reader = new BufferedReader(new FileReader(JadwalPath))) {
             String Line;
@@ -24,10 +28,21 @@ public class JadwalDAO {
         } catch (Exception e) {
 
         }
-        
     }
 
     public List<Jadwal> getJadwals() {
         return this.jadwals;
+    }
+    
+    public List<Jadwal> cariJadwal(String lokasiAwal, String lokasiAkhir){
+        List<Jadwal> jadwalBaru = new ArrayList<>();
+        for (Jadwal j : jadwals) {
+            if (j.getStasiunAkhir() != null && j.getStasiunAwal() != null){
+                if (j.getStasiunAwal().getKota().equals(lokasiAwal) && j.getStasiunAkhir().getKota().equals(lokasiAkhir)){
+                    jadwalBaru.add(j);
+                }
+            }
+        }
+        return  jadwalBaru;
     }
 }
