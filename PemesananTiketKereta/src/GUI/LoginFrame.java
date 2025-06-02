@@ -25,6 +25,7 @@ public class LoginFrame extends javax.swing.JFrame {
         this.txtUsername.setText("");
         this.pwdUser.setText("");
         this.users = new UserDAO();
+        System.out.println(TiketDAO.generateIdTiket());
     }
 
     /**

@@ -24,10 +24,9 @@ public class PesanTiketFrame extends javax.swing.JFrame {
     /**
      * Creates new form PesanTiketFrame
      */
-    public PesanTiketFrame(User loggedInUser) {
+    public PesanTiketFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.loggedInUser = loggedInUser;
         this.jadwals = new JadwalDAO();
     }
 
