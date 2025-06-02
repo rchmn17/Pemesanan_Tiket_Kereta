@@ -1,6 +1,7 @@
 package GUI;
 
 import ClassDAO.JadwalDAO;
+import ClassDAO.PemesananDAO;
 import EntityClass.Jadwal;
 import EntityClass.User;
 import java.text.SimpleDateFormat;
@@ -29,6 +30,7 @@ public class PesanTiketFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.loggedInUser = loggedInUser;
         this.jadwals = new JadwalDAO();
+        System.out.println(PemesananDAO.getLastIdPesanan());
     }
 
     /**
@@ -53,6 +55,7 @@ public class PesanTiketFrame extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,7 +64,7 @@ public class PesanTiketFrame extends javax.swing.JFrame {
         jLabel1.setText("Selamat Datang! Mau ke mana hari ini?");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Surabaya", "Medan", "Jakarta", "Yogyakarta", "Purworejo", "Kota Malang", "Banyumas", "Bandung", "Semarang", "Blitar", "Surakarta" }));
-        jComboBox1.setSelectedIndex(-1);
+        jComboBox1.setToolTipText("");
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -69,7 +72,6 @@ public class PesanTiketFrame extends javax.swing.JFrame {
         });
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Surabaya", "Medan", "Jakarta", "Yogyakarta ", "Purworejo", "Kota Malang", "Banyumas", "Bandung", "Semarang", "Blitar", "Surakarta" }));
-        jComboBox2.setSelectedIndex(-1);
 
         jLabel2.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 12)); // NOI18N
         jLabel2.setText("Stasiun Asal");
@@ -103,6 +105,8 @@ public class PesanTiketFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setText("History");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -130,7 +134,9 @@ public class PesanTiketFrame extends javax.swing.JFrame {
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(94, 94, 94)
                 .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,7 +187,9 @@ public class PesanTiketFrame extends javax.swing.JFrame {
                         .addComponent(jButton1)
                         .addGap(26, 26, 26))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton3))
                         .addContainerGap())))
         );
 
@@ -235,6 +243,7 @@ public class PesanTiketFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private com.toedter.calendar.JDateChooser jDateChooser1;

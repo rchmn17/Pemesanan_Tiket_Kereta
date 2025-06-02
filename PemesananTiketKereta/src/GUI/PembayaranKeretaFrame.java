@@ -174,7 +174,7 @@ public class PembayaranKeretaFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PaymentFrame payment = new PaymentFrame(Namas,pesanan, jumlahDewasa, jumlahAnak);
+        PaymentFrame payment = new PaymentFrame(Namas ,pesanan, jumlahDewasa, jumlahAnak);
         payment.setVisible(true);
         this.setVisible(false);
         payment.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

@@ -1,5 +1,6 @@
 package GUI;
 
+import TemplateGUI.TemplateJadwal;
 import EntityClass.Jadwal;
 import EntityClass.User;
 import java.time.format.DateTimeFormatter;

@@ -2,6 +2,8 @@ package GUI;
 
 import ClassDAO.*;
 import EntityClass.User;
+import GUI.CreateAccountFrame;
+import GUI.PesanTiketFrame;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 

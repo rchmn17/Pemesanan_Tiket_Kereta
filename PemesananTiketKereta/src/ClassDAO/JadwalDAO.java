@@ -23,7 +23,7 @@ public class JadwalDAO {
             String Line;
             while ((Line = reader.readLine()) != null) {
                 String[] Atribut = Line.split(" ");
-                jadwals.add(new Jadwal(Atribut[0], Atribut[1], Atribut[2], Atribut[3], Atribut[4], Integer.parseInt(Atribut[5]), keretas, stasiuns));
+                jadwals.add(new Jadwal(Atribut[0], Atribut[1], Atribut[2], Atribut[3], Atribut[4], Atribut[5], Integer.parseInt(Atribut[6]), keretas, stasiuns));
             }
         } catch (Exception e) {
 
@@ -44,5 +44,14 @@ public class JadwalDAO {
             }
         }
         return  jadwalBaru;
+    }
+    
+    public Jadwal cariJadwaldariID(String ID){
+        for (Jadwal j : jadwals) {
+            if (j.getIdJadwal().equals(ID)){
+               return j;
+            }
+        }
+        return null;
     }
 }

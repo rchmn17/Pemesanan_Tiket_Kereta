@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  */
 public class PaymentFrame extends javax.swing.JFrame {
 
-    private Pemesanan pesanan;
+    public static Pemesanan pesanan;
     String statusTransfer = "idle";
     private int jumlahAnak;
     private int jumlahDewasa;
@@ -203,8 +203,14 @@ public class PaymentFrame extends javax.swing.JFrame {
                 if(statusTransfer.equals("sukses")){
                     System.out.println("testing");
                     PembayaranBerhasil pb = new PembayaranBerhasil();
-                    pb.setVisible(true);
-                    this.dispose();
+                    pb.getBtnSelesai().addActionListener(new java.awt.event.ActionListener() {
+                        @Override
+                        public void actionPerformed(java.awt.event.ActionEvent e) {
+                            PesanTiketFrame ptf = new PesanTiketFrame(PaymentFrame.pesanan.getUserPembeli());
+                            pb.dispose();
+                            ptf.setVisible(true);
+                        }
+                    });
                     statusTransfer = "idle";
                     break;
                 } else if(statusTransfer.equals("kurang")) {
