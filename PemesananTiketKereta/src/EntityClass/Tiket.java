@@ -1,15 +1,15 @@
 package EntityClass;
 
 public class Tiket {
+    String idTiket;
     String nama;
     String nomorKursi;
-    String idTiket;
     Jadwal jadwal;
 
-    public Tiket(String nama, String nomorKursi, String idTiket, Jadwal jadwal) {
+    public Tiket(String idTiket, String nama, String nomorKursi, Jadwal jadwal) {
+        this.idTiket = idTiket;
         this.nama = nama;
         this.nomorKursi = nomorKursi;
-        this.idTiket = idTiket;
         this.jadwal = jadwal;
     }
 

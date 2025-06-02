@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class Jadwal {
+    private String idJadwal;
     private Kereta kereta;
     private LocalTime waktuKeberangkatan;
     private LocalTime waktuKedatangan;
@@ -14,7 +15,8 @@ public class Jadwal {
     private int kursiTersedia;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
-    public Jadwal(String kereta, String waktuKeberangkatan, String waktuKedatangan, String stasiunAwal, String stasiunAkhir, int kursiTersedia, List<Kereta> keretas, List<Stasiun> stasiuns) {
+    public Jadwal(String idJadwal, String kereta, String waktuKeberangkatan, String waktuKedatangan, String stasiunAwal, String stasiunAkhir, int kursiTersedia, List<Kereta> keretas, List<Stasiun> stasiuns) {
+        this.idJadwal = idJadwal;
         setKereta(keretas, kereta);
         this.waktuKeberangkatan = LocalTime.parse(waktuKeberangkatan, formatter);
         this.waktuKedatangan = LocalTime.parse(waktuKedatangan, formatter);
@@ -25,6 +27,10 @@ public class Jadwal {
 
     public double getHarga() {
         return harga;
+    }
+
+    public String getIdJadwal() {
+        return idJadwal;
     }
 
     public int getKursiTersedia() {
