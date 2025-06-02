@@ -43,6 +43,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         pwdUser = new javax.swing.JPasswordField();
+<<<<<<< HEAD
         btnLogin = new javax.swing.JButton();
         btnCreateAcc = new javax.swing.JButton();
 =======
