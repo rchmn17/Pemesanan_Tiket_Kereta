@@ -4,7 +4,11 @@
  */
 package GUI;
 
+import ClassDAO.TiketDAO;
+import EntityClass.Tiket;
 import Session.Session;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author Axioo Pongo
  */
 public class Dashboard extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Dashboard
      */

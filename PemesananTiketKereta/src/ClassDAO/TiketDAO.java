@@ -9,6 +9,7 @@ import EntityClass.Tiket;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -83,5 +84,16 @@ public class TiketDAO {
     
     public List<Tiket> getTikets() {
         return tikets;
+    }
+    
+    public void writeFile(Tiket t){
+        String userPath = System.getProperty("user.dir") + File.separator + "Assets" + File.separator + "Tiket.txt";
+        try (FileWriter writer = new FileWriter(userPath, true)) {
+            writer.write("\n" + generateIdTiket() + " " + t.getNama() + " " + t.getNomorKursi() + " " + t.getJadwal().getIdJadwal());
+            System.out.println("Tiket berhasil disimpan.");
+        } catch (IOException e) {
+            System.out.println("Error menulis tiket: " + e.getMessage());
+        }
+        loadTikets(jDAO.getJadwals());
     }
 }
