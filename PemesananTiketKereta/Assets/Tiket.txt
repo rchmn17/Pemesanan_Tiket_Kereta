@@ -4,3 +4,5 @@ T003 aya 12 J002
 T004 Fatur 10 J003
 T005 Hansen 9 J003
 T006 Aceng 1 J003
+T007 kai 1 J001
+T008 wawaw 5 J001

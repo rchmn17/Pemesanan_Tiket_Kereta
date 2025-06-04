@@ -30,6 +30,7 @@ public class InputDataFrame extends javax.swing.JFrame {
     private Date tanggalPemesanan;
     private User loggedInUser;
     private String[] KursiTersedia;
+    private TiketDAO daotiket = new TiketDAO();
     private static List<TemplateInputData> panelInput = new ArrayList<TemplateInputData>();
 
     /**
@@ -42,7 +43,6 @@ public class InputDataFrame extends javax.swing.JFrame {
         this.jumlahAnak = jumlahAnak;
         this.jadwalPemesanan = jadwal;
         this.tanggalPemesanan = tanggal;
-        this.IDTiket = TiketDAO.generateIdTiket();
         initComponents();
         this.setLocationRelativeTo(null);
         loadPenumpangPanel(jumlahDewasa + jumlahAnak);
@@ -145,7 +145,7 @@ public class InputDataFrame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Component[] komponen = jPanel2.getComponents();
-        List<Tiket> itemOrder = new ArrayList<>();
+        ArrayList<Tiket> itemOrder = new ArrayList<>();
         String[] dataKursi = getKursi();
         String[] dataNama = getNama();
         
@@ -153,14 +153,14 @@ public class InputDataFrame extends javax.swing.JFrame {
         for (Component c : komponen) {
             if (c instanceof TemplateInputData panelInput){
                 String nama = panelInput.getjTextField1().getText();
-                itemOrder.add(new Tiket( IDTiket, dataNama[i], dataKursi[i], jadwalPemesanan));
+                itemOrder.add(new Tiket( TiketDAO.generateIdTiket(), dataNama[i], dataKursi[i], jadwalPemesanan));
                 i++;
             }
         }
         
         SimpleDateFormat formatter = new SimpleDateFormat("EEEE", new Locale("id", "ID"));
         String hari = formatter.format(tanggalPemesanan);
-        formatter = new SimpleDateFormat("dd MMMM yyyy", new Locale("id", "ID"));
+        formatter = new SimpleDateFormat("yyyy-MM-dd", new Locale("id", "ID"));
         String tanggal = formatter.format(tanggalPemesanan);
         
         Pemesanan pesanan = new Pemesanan(PemesananDAO.generateIdPesanan(),jadwalPemesanan, hari, tanggal, loggedInUser, itemOrder);
@@ -189,19 +189,36 @@ public class InputDataFrame extends javax.swing.JFrame {
     
     private void loadPenumpangPanel(int jumlahPenumpang) {
         jPanel2.removeAll();
+        ArrayList<String> kursiDipesan = new ArrayList<String>();
+        for(Tiket elem : daotiket.getTikets()) {
+            if(elem.getJadwal().getIdJadwal().equals(this.jadwalPemesanan.getIdJadwal())) {
+                kursiDipesan.add(elem.getNomorKursi());
+            }
+            
+        }
+        KursiTersedia = new String[jadwalPemesanan.getKursiTersedia()];
+        for(int i = 0 ;i<KursiTersedia.length; i++) {
+            KursiTersedia[i] = String.valueOf(i+1);
+        }
         
         for (int i = 0; i < jumlahPenumpang; i++) {
             System.out.println(jumlahPenumpang);
             panelInput.add(new TemplateInputData());
 
             panelInput.get(i).getjLabel1().setText("Nama:");
-            panelInput.get(i).getjLabel2().setText("Gender:");
+            //panelInput.get(i).getjLabel2().setText("Gender:");
             panelInput.get(i).getjTextField1().setText("");
+            //panelInput.get(i).setCombobox(KursiTersedia);
+            panelInput.get(i).getComboBox().removeAllItems();
             panelInput.get(i).setCombobox(KursiTersedia);
-            //bikin set Combobox
+            for(String elem : kursiDipesan) {
+                panelInput.get(i).getComboBox().removeItem(elem);
+            }
 
             jPanel2.add(panelInput.get(i));
             jPanel2.add(Box.createRigidArea(new Dimension(0, 10)));
+            
+            
         }
         jPanel2.revalidate();
         jPanel2.repaint();

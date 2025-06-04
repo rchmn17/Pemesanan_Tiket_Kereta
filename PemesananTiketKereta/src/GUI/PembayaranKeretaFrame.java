@@ -180,8 +180,8 @@ public class PembayaranKeretaFrame extends javax.swing.JFrame {
         payment.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private int getHargaPesanan() {
-        int harga = 0;
+    private double getHargaPesanan() {
+        double harga = 0;
         for (Tiket t : pesanan.getItemOrder()) {
             harga += t.getJadwal().getHarga();
         }

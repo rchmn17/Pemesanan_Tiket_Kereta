@@ -8,6 +8,7 @@ import javax.swing.Box;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JLabel;
@@ -220,7 +221,7 @@ public class ListKeretaFrame extends javax.swing.JFrame {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH.mm");
         
         for (Jadwal jadwal : jadwalList) {
-            TemplateJadwal panel = new TemplateJadwal();
+            TemplateJadwal panel = new TemplateJadwal(jadwal, this.jumlahAnak, this.jumlahDewasa, this.tanggal);
             
             panel.getjLabel6().setText(jadwal.getKereta().getNama());
             panel.getjLabel7().setText(jadwal.getKereta().getTipeKereta());

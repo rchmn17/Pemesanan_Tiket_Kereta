@@ -1,5 +1,6 @@
 package EntityClass;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Pemesanan {
@@ -8,9 +9,9 @@ public class Pemesanan {
     private String hari;
     private String tanggal;
     private User userPembeli;
-    private List<Tiket> itemOrder;
+    private ArrayList<Tiket> itemOrder;
 
-    public Pemesanan(String idPesanan, Jadwal jadwal, String hari, String tanggal, User userPembeli, List<Tiket> itemOrder) {
+    public Pemesanan(String idPesanan, Jadwal jadwal, String hari, String tanggal, User userPembeli, ArrayList<Tiket> itemOrder) {
         this.idPesanan = idPesanan;
         this.jadwal = jadwal;
         this.hari = hari;
@@ -51,11 +52,11 @@ public class Pemesanan {
         this.userPembeli = userPembeli;
     }
 
-    public List<Tiket> getItemOrder() {
+    public ArrayList<Tiket> getItemOrder() {
         return itemOrder;
     }
 
-    public void setItemOrder(List<Tiket> itemOrder) {
+    public void setItemOrder(ArrayList<Tiket> itemOrder) {
         this.itemOrder = itemOrder;
     }
 }
