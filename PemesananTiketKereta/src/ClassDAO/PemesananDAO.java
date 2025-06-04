@@ -13,6 +13,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +34,7 @@ public class PemesananDAO {
         loadPemesanan(jDAO.getJadwals(), tDAO.getTikets());
     }
     
-    public void loadPemesanan(List<Jadwal> jadwals, List<Tiket> tikets){
+    public void loadPemesanan(List<Jadwal> jadwals, ArrayList<Tiket> tikets){
         String path = System.getProperty("user.dir") + File.separator + "Assets" + File.separator + "Pemesanan.txt";
         try(BufferedReader reader = new BufferedReader(new FileReader(path))) {
             String Line;
@@ -80,6 +83,7 @@ public class PemesananDAO {
     }
     
     public void writeFile(Pemesanan p){
+        
         String userPath = System.getProperty("user.dir") + File.separator + "Assets" + File.separator + "Pemesanan.txt";
         String tiket = "";
         for (int i=0; i<p.getItemOrder().size(); i++){
@@ -90,7 +94,7 @@ public class PemesananDAO {
             }
         }
         try (FileWriter writer = new FileWriter(userPath, true)) {
-            writer.write("\n" + generateIdPesanan() + " " + p.getJadwal().getIdJadwal() + " " + p.getHari() + " " + p.getTanggal() + " " + Session.getUser().getName() + " " + tiket);
+            writer.write("\n" + generateIdPesanan() + " " + p.getJadwal().getIdJadwal() + " " + p.getHari() + " " + p.getTanggal()+ " " + Session.getUser().getName() + " " + tiket);
             System.out.println("Pesanan berhasil disimpan.");
         } catch (IOException e) {
             System.out.println("Error menulis pesanan: " + e.getMessage());

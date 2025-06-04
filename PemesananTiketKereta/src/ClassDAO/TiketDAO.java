@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ import java.util.List;
  * @author USER
  */
 public class TiketDAO {
-    private List<Tiket> tikets = new ArrayList<>();
+    private ArrayList<Tiket> tikets = new ArrayList<>();
     private JadwalDAO jDAO = new JadwalDAO();
     
     public TiketDAO() {
@@ -41,8 +42,8 @@ public class TiketDAO {
         }
     }
     
-    public List<Tiket> cariTiketdariJadwal(String idJadwal){
-        List<Tiket> tiketBaru = new ArrayList<>();
+    public ArrayList<Tiket> cariTiketdariJadwal(String idJadwal){
+        ArrayList<Tiket> tiketBaru = new ArrayList<>();
         for (Tiket t : tikets) {
             if (t.getJadwal().getIdJadwal().equals(idJadwal)){
                 tiketBaru.add(t);
@@ -82,7 +83,7 @@ public class TiketDAO {
         return String.format("T%03d", id);
     }
     
-    public List<Tiket> getTikets() {
+    public ArrayList<Tiket> getTikets() {
         return tikets;
     }
     

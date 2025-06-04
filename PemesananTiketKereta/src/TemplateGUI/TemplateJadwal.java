@@ -1,5 +1,9 @@
 package TemplateGUI;
 
+import EntityClass.Jadwal;
+import GUI.InputDataFrame;
+import java.time.LocalDate;
+import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -13,12 +17,20 @@ import javax.swing.JLabel;
  * @author Umar
  */
 public class TemplateJadwal extends javax.swing.JPanel {
-
+    private Jadwal jadwal;
+    private int jumlahAnak;
+    private int jumlahDewasa;
+    
+    private Date date;
     /**
      * Creates new form TemplateJadwal
      */
-    public TemplateJadwal() {
+    public TemplateJadwal(Jadwal jadwal, int jumlahAnak, int jumlahDewasa, Date date) {
         initComponents();
+        this.jadwal = jadwal;
+        this.jumlahDewasa = jumlahDewasa;
+        this.jumlahAnak = jumlahAnak;
+        this.date = date;
     }
 
     /**
@@ -111,7 +123,7 @@ public class TemplateJadwal extends javax.swing.JPanel {
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -177,7 +189,9 @@ public class TemplateJadwal extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+//        InputDataFrame input = new InputDataFrame(this.jumlahAnak, this.jumlahDewasa, jadwal, date);
+//        input.setVisible(true);
+        
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
