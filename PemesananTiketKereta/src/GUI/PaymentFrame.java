@@ -207,6 +207,7 @@ public class PaymentFrame extends javax.swing.JFrame {
                     PembayaranBerhasil pb = new PembayaranBerhasil(pesanan.getUserPembeli());
                     pb.setVisible(true);
                     for(Tiket elem : pesanan.getItemOrder()) {
+                        elem.setIdTiket(daotiket.generateIdTiket());
                         daotiket.writeFile(elem);
                     }
                     daopesan.writeFile(pesanan);
@@ -234,7 +235,6 @@ public class PaymentFrame extends javax.swing.JFrame {
             }
         });
         thread.start();
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public String cekTransfer(String rekening, String nominal) {
@@ -256,7 +256,7 @@ public class PaymentFrame extends javax.swing.JFrame {
     private double getHargaPesanan() {
         double harga = 0;
         for (Tiket t : pesanan.getItemOrder()) {
-            harga += t.getJadwal().getHarga();
+            harga += t.getPemesanan().getJadwal().getHarga();
         }
         return harga;
     }
