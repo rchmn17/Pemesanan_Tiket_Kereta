@@ -183,7 +183,7 @@ public class PembayaranKeretaFrame extends javax.swing.JFrame {
     private double getHargaPesanan() {
         double harga = 0;
         for (Tiket t : pesanan.getItemOrder()) {
-            harga += t.getJadwal().getHarga();
+            harga += t.getPemesanan().getJadwal().getHarga();
         }
         return harga;
     }

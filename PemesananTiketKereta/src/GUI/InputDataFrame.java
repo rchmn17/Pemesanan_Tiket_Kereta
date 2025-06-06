@@ -31,6 +31,7 @@ public class InputDataFrame extends javax.swing.JFrame {
     private User loggedInUser;
     private String[] KursiTersedia;
     private TiketDAO daotiket = new TiketDAO();
+    private PemesananDAO pDAO = new PemesananDAO();
     private static List<TemplateInputData> panelInput = new ArrayList<TemplateInputData>();
 
     /**
@@ -94,7 +95,6 @@ public class InputDataFrame extends javax.swing.JFrame {
 
         jLabel2.setText("Sesuaikan Kepemilikan Tiket dan Pilih Nomor Kursi");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("D:\\Kuliah\\Semester 2\\Pemrograman Lanjutan\\ProjrctAkhir\\Pemesanan_Tiket_Kereta\\PemesananTiketKereta\\src\\GUI\\LOGOkAI(50).png")); // NOI18N
         jLabel3.setText("logoKAI(50)");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -145,26 +145,25 @@ public class InputDataFrame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Component[] komponen = jPanel2.getComponents();
-        ArrayList<Tiket> itemOrder = new ArrayList<>();
         String[] dataKursi = getKursi();
         String[] dataNama = getNama();
-        
-        int i=0;
-        for (Component c : komponen) {
-            if (c instanceof TemplateInputData panelInput){
-                String nama = panelInput.getjTextField1().getText();
-                itemOrder.add(new Tiket( TiketDAO.generateIdTiket(), dataNama[i], dataKursi[i], jadwalPemesanan));
-                i++;
-            }
-        }
         
         SimpleDateFormat formatter = new SimpleDateFormat("EEEE", new Locale("id", "ID"));
         String hari = formatter.format(tanggalPemesanan);
         formatter = new SimpleDateFormat("yyyy-MM-dd", new Locale("id", "ID"));
         String tanggal = formatter.format(tanggalPemesanan);
         
-        Pemesanan pesanan = new Pemesanan(PemesananDAO.generateIdPesanan(),jadwalPemesanan, hari, tanggal, loggedInUser, itemOrder);
-        
+        Pemesanan pesanan = new Pemesanan(pDAO.generateIdPesanan() ,jadwalPemesanan, hari, tanggal, loggedInUser, new ArrayList<>());
+        int i=0;
+        ArrayList<Tiket> itemOrder = new ArrayList<>();
+        for (Component c : komponen) {
+            if (c instanceof TemplateInputData panelInput){
+                String nama = panelInput.getjTextField1().getText();
+                itemOrder.add(new Tiket(dataNama[i], dataKursi[i], pesanan));
+                i++;
+            }
+        }
+        pesanan.setItemOrder(itemOrder);
         this.dispose();
         new PembayaranKeretaFrame(getNama(),pesanan, jumlahDewasa, jumlahAnak).setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -189,13 +188,17 @@ public class InputDataFrame extends javax.swing.JFrame {
     
     private void loadPenumpangPanel(int jumlahPenumpang) {
         jPanel2.removeAll();
-        ArrayList<String> kursiDipesan = new ArrayList<String>();
-        for(Tiket elem : daotiket.getTikets()) {
-            if(elem.getJadwal().getIdJadwal().equals(this.jadwalPemesanan.getIdJadwal())) {
-                kursiDipesan.add(elem.getNomorKursi());
+        ArrayList<String> kursiDipesan = new ArrayList<>();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", new Locale("id", "ID"));
+//        Date date = new Date();
+        for (Pemesanan p : pDAO.getPesanans()){
+            for(Tiket t : p.getItemOrder()) {
+                if((t.getPemesanan().getJadwal().getIdJadwal().equals(this.jadwalPemesanan.getIdJadwal())) && (t.getPemesanan().getTanggal().equals(formatter.format(tanggalPemesanan)))) {
+                    kursiDipesan.add(t.getNomorKursi());
+                }
             }
-            
         }
+        
         KursiTersedia = new String[jadwalPemesanan.getKursiTersedia()];
         for(int i = 0 ;i<KursiTersedia.length; i++) {
             KursiTersedia[i] = String.valueOf(i+1);

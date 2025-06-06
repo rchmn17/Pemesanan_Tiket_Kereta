@@ -4,16 +4,14 @@
  */
 package ClassDAO;
 
-import EntityClass.Jadwal;
+import EntityClass.Pemesanan;
 import EntityClass.Tiket;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -21,13 +19,12 @@ import java.util.List;
  */
 public class TiketDAO {
     private ArrayList<Tiket> tikets = new ArrayList<>();
-    private JadwalDAO jDAO = new JadwalDAO();
     
     public TiketDAO() {
-        loadTikets(jDAO.getJadwals());
+        loadTikets();
     }
     
-    public void loadTikets(List<Jadwal> jadwals) {
+    public void loadTikets() {
         String basePath = System.getProperty("user.dir");
         String JadwalPath = basePath + File.separator + "Assets" + File.separator + "Tiket.txt";
         
@@ -35,17 +32,17 @@ public class TiketDAO {
             String Line;
             while ((Line = reader.readLine()) != null) {
                 String[] Atribut = Line.split(" ");
-                tikets.add(new Tiket(Atribut[0], Atribut[1], Atribut[2], jDAO.cariJadwaldariID(Atribut[3])));
+                tikets.add(new Tiket(Atribut[0], Atribut[1], Atribut[2], new Pemesanan(Atribut[3])));
             }
         } catch (Exception e) {
             System.out.println("Gagal pada saat buka file");
         }
     }
     
-    public ArrayList<Tiket> cariTiketdariJadwal(String idJadwal){
+    public ArrayList<Tiket> cariTiketdariPemesanan(String idPesanan){
         ArrayList<Tiket> tiketBaru = new ArrayList<>();
         for (Tiket t : tikets) {
-            if (t.getJadwal().getIdJadwal().equals(idJadwal)){
+            if (t.getPemesanan().getIdPesanan().equals(idPesanan)){
                 tiketBaru.add(t);
             }
         }
@@ -90,11 +87,11 @@ public class TiketDAO {
     public void writeFile(Tiket t){
         String userPath = System.getProperty("user.dir") + File.separator + "Assets" + File.separator + "Tiket.txt";
         try (FileWriter writer = new FileWriter(userPath, true)) {
-            writer.write("\n" + generateIdTiket() + " " + t.getNama() + " " + t.getNomorKursi() + " " + t.getJadwal().getIdJadwal());
+            writer.write("\n" + t.getIdTiket() + " " + t.getNama() + " " + t.getNomorKursi() + " " + t.getPemesanan().getIdPesanan());
             System.out.println("Tiket berhasil disimpan.");
         } catch (IOException e) {
             System.out.println("Error menulis tiket: " + e.getMessage());
         }
-        loadTikets(jDAO.getJadwals());
+        loadTikets();
     }
 }

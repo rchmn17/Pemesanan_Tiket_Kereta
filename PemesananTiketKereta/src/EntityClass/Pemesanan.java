@@ -19,6 +19,18 @@ public class Pemesanan {
         this.userPembeli = userPembeli;
         this.itemOrder = itemOrder;
     }
+
+    public Pemesanan(Jadwal jadwal, String hari, String tanggal, User userPembeli, ArrayList<Tiket> itemOrder) {
+        this.jadwal = jadwal;
+        this.hari = hari;
+        this.tanggal = tanggal;
+        this.userPembeli = userPembeli;
+        this.itemOrder = itemOrder;
+    }
+
+    public Pemesanan(String idPesanan) {
+        this.idPesanan = idPesanan;
+    }
     
     public Jadwal getJadwal() {
         return jadwal;
@@ -58,5 +70,13 @@ public class Pemesanan {
 
     public void setItemOrder(ArrayList<Tiket> itemOrder) {
         this.itemOrder = itemOrder;
+    }
+
+    public String getIdPesanan() {
+        return idPesanan;
+    }
+
+    public void setIdPesanan(String idPesanan) {
+        this.idPesanan = idPesanan;
     }
 }
