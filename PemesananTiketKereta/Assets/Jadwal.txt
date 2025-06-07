@@ -48,3 +48,5 @@ J047 Taksaka 09:00:00 15:30:00 semarangTawang bandung 50
 J048 Serayu 07:30:00 14:00:00 jatiLuhur blitar 67
 J049 Gajayana 12:45:00 19:10:00 suhungMambro gambir 60
 J050 Matarmaja 14:15:00 21:00:00 lempuyangan semarangTawang 49
+J051 GalatSuri 09:00:00 15:30:00 jatiLuhur suhungMambro 2
+J052 MamangGolek 13:00:00 19:00:00 jatiLuhur suhungMambro 4

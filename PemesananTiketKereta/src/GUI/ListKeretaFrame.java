@@ -1,13 +1,19 @@
 package GUI;
 
+import ClassDAO.PemesananDAO;
 import TemplateGUI.TemplateJadwal;
 import EntityClass.Jadwal;
+import EntityClass.Pemesanan;
+import EntityClass.Tiket;
 import EntityClass.User;
+import java.awt.Color;
 import java.time.format.DateTimeFormatter;
 import javax.swing.Box;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JLabel;
@@ -27,6 +33,7 @@ public class ListKeretaFrame extends javax.swing.JFrame {
     private int jumlahAnak;
     private User loggedInUser;
     private Date tanggal;
+    private PemesananDAO pDAO = new PemesananDAO();
     /**
      * Creates new form ListKeretaFrame
      */
@@ -51,7 +58,7 @@ public class ListKeretaFrame extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         btnBack = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane2 = new raven.scroll.win11.ScrollPaneWin11();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -92,6 +99,7 @@ public class ListKeretaFrame extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 153, 0));
         jLabel2.setText("JADWAL KERETA YANG TERSEDIA");
 
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/LOGOkAI(50).png"))); // NOI18N
         jLabel3.setText("LOGOkai(50)");
 
         jPanel1.setBackground(new java.awt.Color(36, 74, 149));
@@ -166,8 +174,8 @@ public class ListKeretaFrame extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
@@ -221,6 +229,21 @@ public class ListKeretaFrame extends javax.swing.JFrame {
         
         for (Jadwal jadwal : jadwalList) {
             TemplateJadwal panel = new TemplateJadwal(jadwal, this.jumlahAnak, this.jumlahDewasa, this.tanggal);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            System.out.println(sdf.format(tanggal));
+            ArrayList<String> kursiDipesan = new ArrayList<String>();
+            for (Pemesanan p : pDAO.getPesanans()){
+                for(Tiket t : p.getItemOrder()) {
+                    if((t.getPemesanan().getJadwal().getIdJadwal().equals(jadwal.getIdJadwal())) && (t.getPemesanan().getTanggal().equals(sdf.format(tanggal)))) {
+                        kursiDipesan.add(t.getNomorKursi());
+                    }
+                }
+            }
+            
+            if((jumlahDewasa+jumlahAnak)>(jadwal.getKursiTersedia()-kursiDipesan.size())) {
+                panel = setEnable(panel);
+            }
+            
             
             panel.getjLabel6().setText(jadwal.getKereta().getNama());
             panel.getjLabel7().setText(jadwal.getKereta().getTipeKereta());
@@ -229,6 +252,7 @@ public class ListKeretaFrame extends javax.swing.JFrame {
             panel.getjLabel10().setText(jadwal.getStasiunAkhir().getNama());
             panel.getjLabel11().setText(jadwal.getWaktuKedatangan().format(formatter));
             panel.getjLabel12().setText("Rp. " + String.valueOf(jadwal.getHarga()) + ",-");
+            panel.getjLabel13().setText(String.valueOf(jadwal.getKursiTersedia()-kursiDipesan.size()));
             panel.getjButton2().addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -241,6 +265,16 @@ public class ListKeretaFrame extends javax.swing.JFrame {
         }
         jPanel2.revalidate();
         jPanel2.repaint();
+    }
+    
+    private TemplateJadwal setEnable(TemplateJadwal panel) {
+        TemplateJadwal panel1 = panel;
+        panel1.getjButton2().setBackground(Color.red);
+        panel1.getjButton2().setEnabled(false);
+        panel1.getMainPanel().setBackground(new Color(204,204,204));
+        panel1.getjLabel6().setForeground(Color.red);
+        panel1.getjLabel13().setForeground(Color.red);
+        return panel1;
     }
 
     public JLabel getjLabel1() {
