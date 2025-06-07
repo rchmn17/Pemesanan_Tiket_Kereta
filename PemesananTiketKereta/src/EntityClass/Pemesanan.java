@@ -1,15 +1,18 @@
 package EntityClass;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Pemesanan {
+    private String idPesanan;
     private Jadwal jadwal;
     private String hari;
     private String tanggal;
     private User userPembeli;
-    private List<Tiket> itemOrder;
+    private ArrayList<Tiket> itemOrder;
 
-    public Pemesanan(Jadwal jadwal, String hari, String tanggal, User userPembeli, List<Tiket> itemOrder) {
+    public Pemesanan(String idPesanan, Jadwal jadwal, String hari, String tanggal, User userPembeli, ArrayList<Tiket> itemOrder) {
+        this.idPesanan = idPesanan;
         this.jadwal = jadwal;
         this.hari = hari;
         this.tanggal = tanggal;
@@ -17,6 +20,18 @@ public class Pemesanan {
         this.itemOrder = itemOrder;
     }
 
+    public Pemesanan(Jadwal jadwal, String hari, String tanggal, User userPembeli, ArrayList<Tiket> itemOrder) {
+        this.jadwal = jadwal;
+        this.hari = hari;
+        this.tanggal = tanggal;
+        this.userPembeli = userPembeli;
+        this.itemOrder = itemOrder;
+    }
+
+    public Pemesanan(String idPesanan) {
+        this.idPesanan = idPesanan;
+    }
+    
     public Jadwal getJadwal() {
         return jadwal;
     }
@@ -49,11 +64,19 @@ public class Pemesanan {
         this.userPembeli = userPembeli;
     }
 
-    public List<Tiket> getItemOrder() {
+    public ArrayList<Tiket> getItemOrder() {
         return itemOrder;
     }
 
-    public void setItemOrder(List<Tiket> itemOrder) {
+    public void setItemOrder(ArrayList<Tiket> itemOrder) {
         this.itemOrder = itemOrder;
+    }
+
+    public String getIdPesanan() {
+        return idPesanan;
+    }
+
+    public void setIdPesanan(String idPesanan) {
+        this.idPesanan = idPesanan;
     }
 }

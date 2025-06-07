@@ -3,6 +3,7 @@ package GUI;
 
 import javax.swing.JFrame;
 import EntityClass.*;
+import ClassDAO.*;
 import java.awt.Component;
 import java.util.Random;
 import javax.swing.JOptionPane;
@@ -12,9 +13,10 @@ import javax.swing.JOptionPane;
  * @author Axioo Pongo
  */
 public class PaymentFrame extends javax.swing.JFrame {
-
+    private PemesananDAO daopesan = new PemesananDAO();
+    private TiketDAO daotiket = new TiketDAO();
     private Pemesanan pesanan;
-    String statusTransfer = "idle";
+    private String statusTransfer = "idle";
     private int jumlahAnak;
     private int jumlahDewasa;
     private String[] Namas;
@@ -202,8 +204,13 @@ public class PaymentFrame extends javax.swing.JFrame {
                 
                 if(statusTransfer.equals("sukses")){
                     System.out.println("testing");
-                    PembayaranBerhasil pb = new PembayaranBerhasil();
+                    PembayaranBerhasil pb = new PembayaranBerhasil(pesanan.getUserPembeli());
                     pb.setVisible(true);
+                    for(Tiket elem : pesanan.getItemOrder()) {
+                        elem.setIdTiket(daotiket.generateIdTiket());
+                        daotiket.writeFile(elem);
+                    }
+                    daopesan.writeFile(pesanan);
                     this.dispose();
                     statusTransfer = "idle";
                     break;
@@ -228,7 +235,6 @@ public class PaymentFrame extends javax.swing.JFrame {
             }
         });
         thread.start();
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public String cekTransfer(String rekening, String nominal) {
@@ -247,10 +253,10 @@ public class PaymentFrame extends javax.swing.JFrame {
         
     }
     
-    private int getHargaPesanan() {
-        int harga = 0;
+    private double getHargaPesanan() {
+        double harga = 0;
         for (Tiket t : pesanan.getItemOrder()) {
-            harga += t.getJadwal().getHarga();
+            harga += t.getPemesanan().getJadwal().getHarga();
         }
         return harga;
     }

@@ -1,17 +1,32 @@
 package EntityClass;
 
 public class Tiket {
+    String idTiket;
     String nama;
     String nomorKursi;
-    String idTiket;
-    Jadwal jadwal;
+    Pemesanan pemesanan;
 
-    public Tiket(String nama, String nomorKursi, String idTiket, Jadwal jadwal) {
+    public Tiket(String nama, String nomorKursi, Pemesanan pemesanan) {
         this.nama = nama;
         this.nomorKursi = nomorKursi;
-        this.idTiket = idTiket;
-        this.jadwal = jadwal;
+        this.pemesanan = pemesanan;
     }
+    
+    public Tiket(String idTiket, String nama, String nomorKursi, Pemesanan pemesanan) {
+        this.idTiket = idTiket;
+        this.nama = nama;
+        this.nomorKursi = nomorKursi;
+        this.pemesanan = pemesanan;
+    }
+
+    public Pemesanan getPemesanan() {
+        return pemesanan;
+    }
+
+    public void setPemesanan(Pemesanan pemesanan) {
+        this.pemesanan = pemesanan;
+    }
+
 
     public void setNomorKursi(String nomorKursi) {
         this.nomorKursi = nomorKursi;
@@ -21,14 +36,6 @@ public class Tiket {
         return nomorKursi;
     }
     
-    public void setJadwal(Jadwal jadwal) {
-        this.jadwal = jadwal;
-    }
-
-    public Jadwal getJadwal() {
-        return jadwal;
-    }
-
     public String getNama() {
         return nama;
     }

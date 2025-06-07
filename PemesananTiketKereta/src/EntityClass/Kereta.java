@@ -2,17 +2,17 @@ package EntityClass;
 
 public class Kereta {
     private String Nama;
-    private String TipeKereta;
+    private String tipeKereta;
     private int harga;
 
     public Kereta(String Nama, String tipe, int harga) {
         this.Nama = Nama;
-        this.TipeKereta = tipe;
+        this.tipeKereta = tipe;
         this.harga = harga;
     }
 
     public String getTipeKereta(){
-        return TipeKereta;
+        return tipeKereta;
     }
 
     public void setNama(String Nama) {

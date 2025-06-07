@@ -15,7 +15,7 @@ public class KeretaDAO {
 
     public void loadKeretas() {
         String basePath = System.getProperty("user.dir");
-        String KeretaPath = basePath + File.separator + "Assest" + File.separator + "Kereta.txt";
+        String KeretaPath = basePath + File.separator + "Assets" + File.separator + "Kereta.txt";
         try(BufferedReader reader = new BufferedReader(new FileReader(KeretaPath))) {
             String Line;
             while ((Line = reader.readLine()) != null) {
