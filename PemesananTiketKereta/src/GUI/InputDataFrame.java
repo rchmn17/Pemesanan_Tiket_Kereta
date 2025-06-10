@@ -11,7 +11,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import javax.swing.Box;
-import javax.swing.JOptionPane;
 import raven.scroll.win11.*;
 
 /*
@@ -151,15 +150,6 @@ public class InputDataFrame extends javax.swing.JFrame {
         Component[] komponen = jPanel2.getComponents();
         String[] dataKursi = getKursi();
         String[] dataNama = getNama();
-        if (dataNama == null) {
-            JOptionPane.showMessageDialog(this, "Nama tidak boleh ada yang kosong!", "Input salah", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        if (dataKursi == null) {
-            JOptionPane.showMessageDialog(this, "Kursi tidak boleh ada yang sama!", "Input salah", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
         
         SimpleDateFormat formatter = new SimpleDateFormat("EEEE", new Locale("id", "ID"));
         String hari = formatter.format(tanggalPemesanan);
@@ -185,11 +175,7 @@ public class InputDataFrame extends javax.swing.JFrame {
     public String[] getNama() {
         String[] dataNama = new String[panelInput.size()];
         for(int i=0 ;i<panelInput.size();i++ ) {
-            if (panelInput.get(i).getNama().isBlank()){
-                return null;
-            }else {
-                dataNama[i] = panelInput.get(i).getNama();
-            }
+            dataNama[i] = panelInput.get(i).getNama();
         }
         return dataNama;
     }
@@ -197,20 +183,11 @@ public class InputDataFrame extends javax.swing.JFrame {
     public String[] getKursi() {
         String[] dataKursi = new String[panelInput.size()];
         for(int i=0 ;i<panelInput.size();i++ ) {
-            if (cekKursiDouble(dataKursi, panelInput.get(i).getKursi())) return null;
             dataKursi[i] = panelInput.get(i).getKursi();
         }
         return dataKursi;
     }
     
-    private boolean cekKursiDouble(String[] dataKursi, String kursi){
-        for (String s : dataKursi){
-            if (kursi.equals(s)){
-                return false;
-            }
-        }
-        return true;
-    }
     
     private void loadPenumpangPanel(int jumlahPenumpang) {
         jPanel2.removeAll();
