@@ -24,15 +24,17 @@ public class PaymentFrame extends javax.swing.JFrame {
     private static int virtualaccount = 100000 + rnd.nextInt(900000);
     private Component frame;
     
-    public PaymentFrame(String[] Namas,Pemesanan pesanan, int jumlahDewasa, int jumlahAnak) {
+    public PaymentFrame(String[] Namas,Pemesanan pesanan, int jumlahDewasa, int jumlahAnak, int harga) {
         this.jumlahAnak = jumlahAnak;
         this.jumlahAnak = jumlahDewasa;
         this.pesanan = pesanan;
         this.Namas = Namas;
         initComponents();
+        this.setLocationRelativeTo(null);
         
         jLabel8.setText(NamasToString());
         jLabel2.setText("Virtual Account : "+virtualaccount);
+        jLabel11.setText("Nominal yang harus dibayar : Rp." + harga);
     }
 
     /**

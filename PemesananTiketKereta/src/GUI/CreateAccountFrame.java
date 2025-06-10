@@ -19,6 +19,7 @@ public class CreateAccountFrame extends javax.swing.JFrame {
      */
     public CreateAccountFrame() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -140,6 +141,13 @@ public class CreateAccountFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Input tidak sesuai : username atau password ada yang kosong.");
             return;
         }
+        if (cekUsername(username)){
+            JOptionPane.showMessageDialog(this, "Username telah terpakai, gunakan username yang lain!");
+            jPasswordField1.setText("");
+            jPasswordField2.setText("");
+            jTextField1.setText("");
+            return;  
+        }
         if (!password1.equals(password2)) {
             JOptionPane.showMessageDialog(this, "Password tidak sama");
             jPasswordField1.setText("");
@@ -150,40 +158,15 @@ public class CreateAccountFrame extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    
+    private boolean cekUsername(String name){
+        UserDAO dao = new UserDAO();
+        for (User u : dao.getUsers()){
+            if (name.equals(u.getName())){
+                return true;
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CreateAccountFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CreateAccountFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CreateAccountFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CreateAccountFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CreateAccountFrame().setVisible(true);
-            }
-        });
+        return false;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

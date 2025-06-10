@@ -11,6 +11,7 @@ public class UserTransfer extends javax.swing.JFrame {
      */
     public UserTransfer() {
         initComponents();
+        this.setLocationRelativeTo(this);
     }
     
     public String getrek() {

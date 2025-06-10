@@ -40,7 +40,6 @@ public class UserDAO {
 
         File userDir = new File(userPath);
         File passwordFile = new File(userDir, "Password.txt");
-        File historyFile = new File(userDir, "History.txt");
 
         if (!userDir.exists()) {
             if (userDir.mkdirs()) {
@@ -58,16 +57,6 @@ public class UserDAO {
             System.out.println("Password berhasil disimpan.");
         } catch (IOException e) {
             System.out.println("Error menulis password: " + e.getMessage());
-        }
-
-        try {
-            if (historyFile.createNewFile()) {
-                System.out.println("File history dibuat.");
-            } else {
-                System.out.println("File history sudah ada.");
-            }
-        } catch (IOException e) {
-            System.out.println("Error membuat file history: " + e.getMessage());
         }
     }
 

@@ -70,6 +70,7 @@ public class PesanTiketFrame extends javax.swing.JFrame {
         jLabel3.setText("Stasiun Tujuan");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Surabaya", "Medan", "Jakarta", "Yogyakarta", "Purworejo", "Kota Malang", "Banyumas", "Bandung", "Semarang", "Blitar", "Surakarta" }));
+        jComboBox1.setSelectedIndex(-1);
         jComboBox1.setToolTipText("");
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,6 +79,7 @@ public class PesanTiketFrame extends javax.swing.JFrame {
         });
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Surabaya", "Medan", "Jakarta", "Yogyakarta ", "Purworejo", "Kota Malang", "Banyumas", "Bandung", "Semarang", "Blitar", "Surakarta" }));
+        jComboBox2.setSelectedIndex(-1);
 
         jLabel6.setFont(new java.awt.Font("MS Reference Sans Serif", 0, 12)); // NOI18N
         jLabel6.setText("Tanggal Keberangkatan");
@@ -96,7 +98,7 @@ public class PesanTiketFrame extends javax.swing.JFrame {
             }
         });
 
-        btnLogout.setText("Logout");
+        btnLogout.setText("Kembali");
         btnLogout.setBorder(null);
         btnLogout.setBorderPainted(false);
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -200,7 +202,7 @@ public class PesanTiketFrame extends javax.swing.JFrame {
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         this.dispose();
-        new LoginFrame().setVisible(true);
+        new Dashboard().setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
@@ -216,8 +218,13 @@ public class PesanTiketFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Stasiun asal dan tujuan tidak boleh sama.");
             return;
         }
-
-        Date tanggal = jDateChooser1.getDate();
+        Date tanggal;
+        if (jDateChooser1.getDate() != null){
+            tanggal = jDateChooser1.getDate();    
+        } else {
+            JOptionPane.showMessageDialog(this, "Tanggal tidak boleh kosong");
+            return;
+        }
         SimpleDateFormat formatter = new SimpleDateFormat("EEEE, dd MMMM yyyy", new Locale("id", "ID"));
         String tanggalFormat = formatter.format(tanggal);
         int dewasaCount = (int) jSpinner2.getValue();

@@ -4,11 +4,9 @@
  */
 package GUI;
 
-import ClassDAO.TiketDAO;
-import EntityClass.Tiket;
 import Session.Session;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,6 +22,8 @@ public class Dashboard extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(this);
         welcomeLabel.setText("<html>Welcome!<br>" + Session.getUser().getName() + "</html>");
+        SimpleDateFormat format = new SimpleDateFormat("d MMMM yyyy");
+        jLabel5.setText("Log in on " + format.format(new Date()));
     }
 
     /**
@@ -120,7 +120,7 @@ public class Dashboard extends javax.swing.JFrame {
         Title.setText("  PESAN KERETA INDONESIA");
 
         description.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
-        description.setText("<html>Lorem Ipsum is simply dummy text of<br> the printing and typesetting industry. <br>Lorem Ipsum has been the industry's<br> standard dummy text ever since the 1500s,<br> when an unknown printer took a galleyf<html>");
+        description.setText("<html>Pesan tiket kereta dengan cepat dan praktis.<html> Klik tombol di samping untuk mulai memesan.<html>");
         description.setMaximumSize(new java.awt.Dimension(214, 80));
 
         btnPesan.setBackground(new java.awt.Color(255, 153, 51));

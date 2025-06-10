@@ -44,6 +44,7 @@ public class ListKeretaFrame extends javax.swing.JFrame {
         this.tanggal = tanggal;
         initComponents();
         loadJadwal(jadwalBaru);
+        this.setLocationRelativeTo(null);
     }
 
     /**

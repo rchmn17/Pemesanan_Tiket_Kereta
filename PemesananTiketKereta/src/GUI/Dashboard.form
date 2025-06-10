@@ -212,7 +212,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="10" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;Lorem Ipsum is simply dummy text of&lt;br&gt; the printing and typesetting industry. &lt;br&gt;Lorem Ipsum has been the industry&apos;s&lt;br&gt; standard dummy text ever since the 1500s,&lt;br&gt; when an unknown printer took a galleyf&lt;html&gt;"/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt;Pesan tiket kereta dengan cepat dan praktis.&lt;html&gt; Klik tombol di samping untuk mulai memesan.&lt;html&gt;"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[214, 80]"/>
             </Property>
