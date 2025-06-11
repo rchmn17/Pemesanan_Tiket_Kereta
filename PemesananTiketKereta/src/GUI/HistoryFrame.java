@@ -59,7 +59,7 @@ public class HistoryFrame extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("PESAN KERETA INDONESIA");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("D:\\Kuliah\\Semester 2\\Pemrograman Lanjutan\\ProjrctAkhir\\Pemesanan_Tiket_Kereta\\PemesananTiketKereta\\src\\GUI\\LOGOkAI(50).png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/LOGOkAI(50).png"))); // NOI18N
         jLabel2.setText("logoKAI(50)");
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N

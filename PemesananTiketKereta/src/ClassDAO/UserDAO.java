@@ -43,7 +43,7 @@ public class UserDAO {
 
         if (!userDir.exists()) {
             if (userDir.mkdirs()) {
-                System.out.println("Folder berhasil dibuat.");
+                
             } else {
                 System.out.println("Gagal membuat folder.");
                 return;
@@ -54,7 +54,7 @@ public class UserDAO {
 
         try (FileWriter writer = new FileWriter(passwordFile)) {
             writer.write(password);
-            System.out.println("Password berhasil disimpan.");
+            
         } catch (IOException e) {
             System.out.println("Error menulis password: " + e.getMessage());
         }

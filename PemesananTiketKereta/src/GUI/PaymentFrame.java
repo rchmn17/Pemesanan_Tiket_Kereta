@@ -210,16 +210,15 @@ public class PaymentFrame extends javax.swing.JFrame {
         Thread thread = new Thread(() -> {
             while(true){
                 if(tf.isVisible()) {
-                    System.out.println("Checking");
+                    System.out.println("");
                 }
+                
                 if(!tf.isVisible()){
                     statusTransfer = cekTransfer(tf.getrek(),tf.getnom());
-                    System.out.println("status tf : "+statusTransfer);
                     
                 }
                 
                 if(statusTransfer.equals("sukses")){
-                    System.out.println("testing");
                     PembayaranBerhasil pb = new PembayaranBerhasil(pesanan.getUserPembeli());
                     pb.setVisible(true);
                     for(Tiket elem : pesanan.getItemOrder()) {
