@@ -35,7 +35,7 @@ public class TiketDAO {
                 tikets.add(new Tiket(Atribut[0], Atribut[1], Atribut[2], new Pemesanan(Atribut[3])));
             }
         } catch (Exception e) {
-            System.out.println("Gagal pada saat buka file");
+            System.out.println(e);
         }
     }
     
@@ -88,7 +88,7 @@ public class TiketDAO {
         String userPath = System.getProperty("user.dir") + File.separator + "Assets" + File.separator + "Tiket.txt";
         try (FileWriter writer = new FileWriter(userPath, true)) {
             writer.write("\n" + t.getIdTiket() + " " + t.getNama() + " " + t.getNomorKursi() + " " + t.getPemesanan().getIdPesanan());
-            System.out.println("Tiket berhasil disimpan.");
+            
         } catch (IOException e) {
             System.out.println("Error menulis tiket: " + e.getMessage());
         }

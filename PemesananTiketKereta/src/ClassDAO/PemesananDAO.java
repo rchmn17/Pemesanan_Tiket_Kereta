@@ -105,7 +105,7 @@ public class PemesananDAO {
         }
         try (FileWriter writer = new FileWriter(userPath, true)) {
             writer.write("\n" + p.getIdPesanan() + " " + p.getJadwal().getIdJadwal() + " " + p.getHari() + " " + p.getTanggal()+ " " + Session.getUser().getName() + " " + sj.toString());
-            System.out.println("Pesanan berhasil disimpan.");
+            
         } catch (IOException e) {
             System.out.println("Error menulis pesanan: " + e.getMessage());
         }

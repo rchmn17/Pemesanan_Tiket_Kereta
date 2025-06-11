@@ -226,7 +226,6 @@ public class InputDataFrame extends javax.swing.JFrame {
         }
         
         for (int i = 0; i < jumlahPenumpang; i++) {
-            System.out.println(jumlahPenumpang);
             panelInput.add(new TemplateInputData());
 
             panelInput.get(i).getjLabel1().setText("Nama:");
