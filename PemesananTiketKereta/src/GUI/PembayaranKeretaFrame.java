@@ -163,8 +163,8 @@ public class PembayaranKeretaFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (jComboBox1.getSelectedIndex(-1)){
-            OptionPane.showMessageDialog(this, "Pilih opsi pembayaran terlebih dahulu");
+        if (jComboBox1.getSelectedIndex()==-1){
+            JOptionPane.showMessageDialog(this, "Pilih opsi pembayaran terlebih dahulu");
             return;
         }
         PaymentFrame payment = new PaymentFrame(Namas,pesanan, jumlahDewasa, jumlahAnak, getHargaPesanan());

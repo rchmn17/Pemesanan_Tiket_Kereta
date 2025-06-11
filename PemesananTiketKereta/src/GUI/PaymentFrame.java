@@ -24,7 +24,7 @@ public class PaymentFrame extends javax.swing.JFrame {
     private static int virtualaccount = 100000 + rnd.nextInt(900000);
     private Component frame;
     
-    public PaymentFrame(String[] Namas,Pemesanan pesanan, int jumlahDewasa, int jumlahAnak, int harga) {
+    public PaymentFrame(String[] Namas,Pemesanan pesanan, int jumlahDewasa, int jumlahAnak, double harga) {
         this.jumlahAnak = jumlahAnak;
         this.jumlahAnak = jumlahDewasa;
         this.pesanan = pesanan;
@@ -247,6 +247,14 @@ public class PaymentFrame extends javax.swing.JFrame {
                     JOptionPane.WARNING_MESSAGE);
                     tf.resetfield();
                     tf.setVisible(true);
+                } else if(statusTransfer.equals("salah2")){
+                    statusTransfer = "idle";
+                    JOptionPane.showMessageDialog(frame,
+                    "Tolong Masukkan format yang benar.",
+                    "Inane warning",
+                    JOptionPane.WARNING_MESSAGE);
+                    tf.resetfield();
+                    tf.setVisible(true);
                 }
             }
         });
@@ -254,17 +262,22 @@ public class PaymentFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public String cekTransfer(String rekening, String nominal) {
-        int rek = Integer.parseInt(rekening);
-        int nom = Integer.parseInt(nominal);
-        if(virtualaccount==rek) {
-            if(nom>=getHargaPesanan()) {
-                return "sukses";
+        try {
+            int rek = Integer.parseInt(rekening);
+            int nom = Integer.parseInt(nominal);
+            if(virtualaccount==rek) {
+                if(nom>=getHargaPesanan()) {
+                    return "sukses";
+                } else {
+                    return "kurang";
+                }
             } else {
-                return "kurang";
+                return "salah";
             }
-        } else {
-            return "salah";
+        } catch(Exception e) {
+            return "salah2";
         }
+        
         
         
     }

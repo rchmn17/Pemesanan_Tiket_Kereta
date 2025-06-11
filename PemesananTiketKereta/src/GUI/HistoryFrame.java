@@ -38,7 +38,7 @@ public class HistoryFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
         model = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -137,7 +137,7 @@ public class HistoryFrame extends javax.swing.JFrame {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         for (Pemesanan p : dao.getPesanans()) {
             if (p.getUserPembeli().getName().equals(Session.getUser().getName())){
-                TemplateHistories panel = new TemplateHistories();
+                TemplateHistories panel = new TemplateHistories(p);
                 String[] tanggal = p.getTanggal().split("-");
                 panel.getTanggalLabel().setText("PEMESANAN " + tanggal[2] + "/" + tanggal[1] + "/" + tanggal[0]);
                 panel.getJamBerangkatLabel().setText("Jam Keberangkatan : " + p.getJadwal().getWaktuKeberangkatan().format(formatter));
