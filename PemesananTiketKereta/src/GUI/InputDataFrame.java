@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import javax.swing.Box;
+import javax.swing.JOptionPane;
 import raven.scroll.win11.*;
 
 /*
@@ -151,6 +152,14 @@ public class InputDataFrame extends javax.swing.JFrame {
         String[] dataKursi = getKursi();
         String[] dataNama = getNama();
         
+        if (dataNama == null) {
+            JOptionPane.showMessageDialog(this, "Nama harus diisi semuanya", "Input salah", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (dataKursi == null) {
+            JOptionPane.showMessageDialog(this, "Kursi tidak boleh sama", "Input salah", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         SimpleDateFormat formatter = new SimpleDateFormat("EEEE", new Locale("id", "ID"));
         String hari = formatter.format(tanggalPemesanan);
         formatter = new SimpleDateFormat("yyyy-MM-dd", new Locale("id", "ID"));
@@ -175,6 +184,7 @@ public class InputDataFrame extends javax.swing.JFrame {
     public String[] getNama() {
         String[] dataNama = new String[panelInput.size()];
         for(int i=0 ;i<panelInput.size();i++ ) {
+            if (panelInput.get(i).getNama().isBlank()) return null;
             dataNama[i] = panelInput.get(i).getNama();
         }
         return dataNama;
@@ -183,17 +193,25 @@ public class InputDataFrame extends javax.swing.JFrame {
     public String[] getKursi() {
         String[] dataKursi = new String[panelInput.size()];
         for(int i=0 ;i<panelInput.size();i++ ) {
+            if (cekKursiDouble(dataKursi, panelInput.get(i).getKursi())) return null;
             dataKursi[i] = panelInput.get(i).getKursi();
         }
         return dataKursi;
     }
     
-    
+    private boolean cekKursiDouble(String[] dataKursi, String kursi){
+        for (String s : dataKursi){
+            if (kursi.equals(s) && dataKursi != null){
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void loadPenumpangPanel(int jumlahPenumpang) {
         jPanel2.removeAll();
         ArrayList<String> kursiDipesan = new ArrayList<>();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", new Locale("id", "ID"));
-//        Date date = new Date();
         for (Pemesanan p : pDAO.getPesanans()){
             for(Tiket t : p.getItemOrder()) {
                 if((t.getPemesanan().getJadwal().getIdJadwal().equals(this.jadwalPemesanan.getIdJadwal())) && (t.getPemesanan().getTanggal().equals(formatter.format(tanggalPemesanan)))) {
@@ -208,7 +226,6 @@ public class InputDataFrame extends javax.swing.JFrame {
         }
         
         for (int i = 0; i < jumlahPenumpang; i++) {
-            System.out.println(jumlahPenumpang);
             panelInput.add(new TemplateInputData());
 
             panelInput.get(i).getjLabel1().setText("Nama:");

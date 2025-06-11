@@ -24,15 +24,17 @@ public class PaymentFrame extends javax.swing.JFrame {
     private static int virtualaccount = 100000 + rnd.nextInt(900000);
     private Component frame;
     
-    public PaymentFrame(String[] Namas,Pemesanan pesanan, int jumlahDewasa, int jumlahAnak) {
+    public PaymentFrame(String[] Namas,Pemesanan pesanan, int jumlahDewasa, int jumlahAnak, double harga) {
         this.jumlahAnak = jumlahAnak;
         this.jumlahAnak = jumlahDewasa;
         this.pesanan = pesanan;
         this.Namas = Namas;
         initComponents();
+        this.setLocationRelativeTo(null);
         
         jLabel8.setText(NamasToString());
         jLabel2.setText("Virtual Account : "+virtualaccount);
+        jLabel11.setText("Nominal yang harus dibayar : Rp." + harga);
     }
 
     /**
@@ -57,11 +59,17 @@ public class PaymentFrame extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(51, 153, 255));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Kode Pembayaran : 12345678");
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Pembayaran Via Transfer");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -130,6 +138,11 @@ public class PaymentFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel11.setText("Nominal yang harus dibayar : 150.000");
+
+        jLabel12.setText("List nama penumpang :");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -138,35 +151,38 @@ public class PaymentFrame extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(171, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(85, 85, 85)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 21, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jButton1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel12)
+                .addGap(3, 3, 3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -178,9 +194,7 @@ public class PaymentFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 26, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -194,16 +208,15 @@ public class PaymentFrame extends javax.swing.JFrame {
         Thread thread = new Thread(() -> {
             while(true){
                 if(tf.isVisible()) {
-                    System.out.println("Checking");
+                    System.out.println("");
                 }
+                
                 if(!tf.isVisible()){
                     statusTransfer = cekTransfer(tf.getrek(),tf.getnom());
-                    System.out.println("status tf : "+statusTransfer);
                     
                 }
                 
                 if(statusTransfer.equals("sukses")){
-                    System.out.println("testing");
                     PembayaranBerhasil pb = new PembayaranBerhasil(pesanan.getUserPembeli());
                     pb.setVisible(true);
                     for(Tiket elem : pesanan.getItemOrder()) {
@@ -231,6 +244,14 @@ public class PaymentFrame extends javax.swing.JFrame {
                     JOptionPane.WARNING_MESSAGE);
                     tf.resetfield();
                     tf.setVisible(true);
+                } else if(statusTransfer.equals("salah2")){
+                    statusTransfer = "idle";
+                    JOptionPane.showMessageDialog(frame,
+                    "Tolong Masukkan format yang benar.",
+                    "Inane warning",
+                    JOptionPane.WARNING_MESSAGE);
+                    tf.resetfield();
+                    tf.setVisible(true);
                 }
             }
         });
@@ -238,17 +259,22 @@ public class PaymentFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public String cekTransfer(String rekening, String nominal) {
-        int rek = Integer.parseInt(rekening);
-        int nom = Integer.parseInt(nominal);
-        if(virtualaccount==rek) {
-            if(nom>=getHargaPesanan()) {
-                return "sukses";
+        try {
+            int rek = Integer.parseInt(rekening);
+            int nom = Integer.parseInt(nominal);
+            if(virtualaccount==rek) {
+                if(nom>=getHargaPesanan()) {
+                    return "sukses";
+                } else {
+                    return "kurang";
+                }
             } else {
-                return "kurang";
+                return "salah";
             }
-        } else {
-            return "salah";
+        } catch(Exception e) {
+            return "salah2";
         }
+        
         
         
     }
@@ -280,6 +306,8 @@ public class PaymentFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -44,6 +44,7 @@ public class ListKeretaFrame extends javax.swing.JFrame {
         this.tanggal = tanggal;
         initComponents();
         loadJadwal(jadwalBaru);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -230,7 +231,6 @@ public class ListKeretaFrame extends javax.swing.JFrame {
         for (Jadwal jadwal : jadwalList) {
             TemplateJadwal panel = new TemplateJadwal(jadwal, this.jumlahAnak, this.jumlahDewasa, this.tanggal);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            System.out.println(sdf.format(tanggal));
             ArrayList<String> kursiDipesan = new ArrayList<String>();
             for (Pemesanan p : pDAO.getPesanans()){
                 for(Tiket t : p.getItemOrder()) {

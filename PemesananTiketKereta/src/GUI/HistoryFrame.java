@@ -38,7 +38,7 @@ public class HistoryFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane1 = new raven.scroll.win11.ScrollPaneWin11();
         model = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -59,7 +59,7 @@ public class HistoryFrame extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("PESAN KERETA INDONESIA");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("D:\\Kuliah\\Semester 2\\Pemrograman Lanjutan\\ProjrctAkhir\\Pemesanan_Tiket_Kereta\\PemesananTiketKereta\\src\\GUI\\LOGOkAI(50).png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/LOGOkAI(50).png"))); // NOI18N
         jLabel2.setText("logoKAI(50)");
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
@@ -137,7 +137,7 @@ public class HistoryFrame extends javax.swing.JFrame {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         for (Pemesanan p : dao.getPesanans()) {
             if (p.getUserPembeli().getName().equals(Session.getUser().getName())){
-                TemplateHistories panel = new TemplateHistories();
+                TemplateHistories panel = new TemplateHistories(p);
                 String[] tanggal = p.getTanggal().split("-");
                 panel.getTanggalLabel().setText("PEMESANAN " + tanggal[2] + "/" + tanggal[1] + "/" + tanggal[0]);
                 panel.getJamBerangkatLabel().setText("Jam Keberangkatan : " + p.getJadwal().getWaktuKeberangkatan().format(formatter));

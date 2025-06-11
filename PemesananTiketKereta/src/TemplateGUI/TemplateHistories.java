@@ -4,7 +4,9 @@
  */
 package TemplateGUI;
 
+import EntityClass.Pemesanan;
 import EntityClass.Tiket;
+import GUI.ETiketForm;
 import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -17,11 +19,10 @@ import javax.swing.JScrollPane;
  */
 public class TemplateHistories extends javax.swing.JPanel {
 
-    /**
-     * Creates new form TemplateHistories
-     */
-    public TemplateHistories() {
+    Pemesanan pemesanan;
+    public TemplateHistories(Pemesanan pemesanan) {
         initComponents();
+        this.pemesanan = pemesanan;
     }
 
     /**
@@ -45,6 +46,7 @@ public class TemplateHistories extends javax.swing.JPanel {
         ListPenumpang = new javax.swing.JList<>();
         penumpangLabel = new javax.swing.JLabel();
         hargaLabel = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(529, 215));
 
@@ -101,7 +103,7 @@ public class TemplateHistories extends javax.swing.JPanel {
                         .addComponent(keretaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(hargaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(stasiunLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addGroup(panelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(penumpangLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -131,6 +133,13 @@ public class TemplateHistories extends javax.swing.JPanel {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
+        jButton1.setText("detail");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -139,7 +148,9 @@ public class TemplateHistories extends javax.swing.JPanel {
                 .addGap(14, 14, 14)
                 .addComponent(tanggalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(KAIlogo, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(KAIlogo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(15, 15, 15))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -151,7 +162,9 @@ public class TemplateHistories extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tanggalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(tanggalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1))
                     .addComponent(KAIlogo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -169,6 +182,13 @@ public class TemplateHistories extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ETiketForm ET = new ETiketForm(this.pemesanan);
+        ET.setVisible(true);
+        ET.setLocationRelativeTo(null);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public void loadPenumpang(List<Tiket> tikets){
         ListPenumpang.removeAll();
@@ -233,6 +253,7 @@ public class TemplateHistories extends javax.swing.JPanel {
     private javax.swing.JLabel KAIlogo;
     private javax.swing.JList<String> ListPenumpang;
     private javax.swing.JLabel hargaLabel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel keretaLabel;

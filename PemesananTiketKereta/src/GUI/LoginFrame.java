@@ -96,7 +96,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Tidak punya akun?");
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("D:\\Fatur\\bgLogoKAI.png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/bgLogoKAI.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
