@@ -66,6 +66,7 @@ public class Jadwal {
         for (Stasiun elem : stasiuns) {
             if (nama.equals(elem.getNama())) {
                 this.stasiunAwal = elem;
+                System.out.println(elem);
             }
         }
     }
